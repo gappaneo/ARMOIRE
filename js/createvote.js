@@ -73,5 +73,27 @@ function createnewvote() {
 
 }
 
+
+	auth.onAuthStateChanged(user => {
+
+		if(user){
+		  //push to FB
+		  console.log("im here")
+		  docRef = db.collection('users').doc(user.uid).collection('outfits')
+			//for loop through all votes in the "votes" collection
+			docRef.get().then(snap => {
+			  snap.forEach((doc) => {
+				console.log(doc.id);
+				console.log(doc.data());
+				document.getElementById("imagegallery").innerHTML += `<img src=${doc.data().outfitData.url} style="width:100px;">`
+			  //console.log here to visualise dataset
+			  });
+			});      
+		}
+	  
+		else {
+		  console.log("this shit is not working")
+		}
+	  })
 // assign events to button
 sbtBtn.addEventListener("click", createnewvote);
