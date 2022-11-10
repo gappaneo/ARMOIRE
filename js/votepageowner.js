@@ -28,7 +28,7 @@ var votestr = "voted" + voteurl
 var hasVoted = localStorage.getItem(votestr);
 
 // non-hardcoded version 
-var sharelinkurl = window.location.hostname + "/votepagefriend.html" + temp
+var sharelinkurl = window.location.hostname + "/ARMOIRE/votepagefriend.html" + temp
 //hardcoded version
 // var sharelinkurl = "http://127.0.0.1:5500/votepagefriend.html" + temp
 
