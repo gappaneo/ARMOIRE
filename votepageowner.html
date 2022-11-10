@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap css  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- personal css  -->
+    <link rel="stylesheet" href="css/testvotepage.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Vote page</title>
+    <!--HEADING-->  
+    <div class="mainheader">
+      <h1>ARMOIRE</h1>
+    </div>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="dashboard.html">Closet</a>
+      <a href="profile.html">Profile</a>
+      <a class="active" href="existingvotes.html">Existing votes</a>
+      <a href="previousvotes.html">Previous votes</a>
+      <a href="createvote.html">Start new vote</a>
+    </div>
+
+    <div class="voteheader">
+      <div id="votetitle">
+        name of vote can go here
+      </div>
+      <div class="copy-link">
+          Share with your friends:
+          <input type="text" class="copy-link-input" id="sharelink" readonly>
+          <button type="button" class="copy-link-button">
+            <span class="material-icons">content_copy</span>
+          </button>
+      </div>
+    </div>
+    
+    
+
+    <div class="container">
+      <div class="cardrow row">
+        <!-- first card  -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <img src="./images/trunkscc.jpeg" alt="" class="card-img-top" />
+            <div class="card-body">
+              <div class="card-title">
+                <h5>Outfit 1 name</h5>
+              </div>
+              <div>
+                <h5>Number of likes </h5>
+                <p id="input1"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- second card  -->
+        <div class="col-lg-4 col-md-6">
+          <div class="card">
+            <img src="./images/trunkscc.jpeg" alt="" class="card-img-top" />
+            <div class="card-body">
+              <div class="card-title">
+                <h5>Outfit 2 name</h5>
+              </div>
+              <div>
+                <h5>Number of likes </h5>
+                <p id="input2"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button id="closebtn" onclick="closeVote()">Close Vote</button>
+      </div>
+    </div>
+
+
+
+    <!-- firebase js stuff  -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <!-- html js --->
+    <script src="js/votepageowner.js"></script>
+  </body>
+</html>

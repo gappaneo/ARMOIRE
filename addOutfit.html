@@ -1,0 +1,45 @@
+<!-- add outfit -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Outfit</title>
+    <!-- <script type="module" src="src/index.js"></script>   -->
+</head>
+<body>
+    <h1>Add an outfit</h1>
+
+      <label for="file">Image to upload:</label>
+      <br>
+      <img src="" id="imgPreview"/>
+      <input type="file" id="photo" accept="image/*">
+      <br>
+      <label for="name">Name of outfit:</label>
+      <input type="text" name="outfitName" id="outfitName" placeholder="Eg. Cruella De Vil" required>
+      <br>
+      <label for="style">Style:</label>
+      <select name="outfitStyle" id="outfitStyle">
+        <option value="formal">Formal</option>
+        <option value="casual">Casual</option>
+        <option value="sporty">Sporty</option>
+        <option value="athleisure">Athleisure</option>
+        <option value="streetwear">Streetwear</option>
+        <option value="party">Party</option>
+        <option value="minimalist">Minimalist</option>
+        <option value="bohemian">Bohemian</option>
+        <option value="others">Others</option>
+      </select>
+      <br>
+      <button type="submit" style="background-color: rgb(155, 112, 83)" onclick="add()">add a new outfit!</button>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<!-- html js --->
+<script src="js/addOutfit.js"></script>
+</html>

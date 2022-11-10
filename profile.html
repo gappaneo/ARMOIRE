@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/existingvotes.css" />
+
+    <title>Profile</title>
+    <div class="mainheader">
+      <h1>ARMOIRE</h1>
+    </div>
+</head>
+<body>
+  <div class="topnav">
+    <a href="dashboard.html">Closet</a>
+    <a class="active" href="#profile">Profile</a>
+    <a  href="existingvotes.html">Existing votes</a>
+    <a href="createvote.html">Start new vote</a>
+  </div>
+
+    <h1>Profile</h1>
+
+
+    <div class="col-lg-7 formLayout">
+        <button
+          class="tablink"
+          onclick="window.location.href='./updateProfile.html'"
+        >
+          edit account settings
+        </button>
+
+        <div id="profilePage" class="tabcontent">
+          <img src="" id="profilePhoto" width="200px" border-radius="50%"><br>
+          Name <p id="profileName"></p>
+          Email <p id="profileEmail"></p>
+        </div>
+         
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<!-- html js --->
+<script src="js/profile.js"></script>
+</html>

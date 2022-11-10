@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS goes here -->
+    <link rel="stylesheet" href="css/createvote.css">
+    <title>Create a new vote</title>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="dashboard.html">Back</a>
+        <div class="title">Create vote</div>
+  
+        <div class="form" id="voteForm">
+          <div class="inputfield">
+            <label>Vote Title</label>
+            <input type="text" class="input" id="voteTitle"/>
+          </div>
+          <div class="inputfield">
+            <label>Occasion</label>
+            <input type="text" class="input" id="voteOccasion"/>
+          </div>
+          <div class="inputfield">
+            <label>Outfits chosen</label>
+          </div>
+          <div class="inputfield">
+            <input type="submit" value="Create Vote" class="btn" id="submitbtn"/>
+          </div>
+        </div>
+      </div>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <!-- html js --->
+    <script src="js/createvote.js"></script>
+</body>
+</html>

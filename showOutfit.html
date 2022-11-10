@@ -1,0 +1,27 @@
+<!-- add outfit -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Outfit</title>
+    <!-- <script type="module" src="src/index.js"></script>   -->
+</head>
+<body onload="loadInfo()">
+    <div>
+        <span style="font-style: bold, underline; color: brown;">name:</span> <h1 id="outfitName"></h1>
+        <span style="font-style: bold, underline; color: brown;">style:</span><p id="outfitStyle"></p>
+
+        <img id="outfitImg" src="" width="150">
+    </div>
+    <button onclick="deleteOutfit()">Delete</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<!-- html js --->
+<script src="js/showOutfit.js"></script>
+</html>
