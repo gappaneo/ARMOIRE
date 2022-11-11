@@ -19,7 +19,7 @@ var storageRef = storage.ref();
 var votetitle = document.getElementById("voteTitle");
 var voteoccasion = document.getElementById("voteOccasion");
 var sbtBtn = document.getElementById("submitbtn")
-
+var imgarr = []
 //add user authentication here
 auth.onAuthStateChanged((user) => {
 	if(user) {
@@ -32,21 +32,68 @@ auth.onAuthStateChanged((user) => {
 	console.log("user: ", user)
 })
 
+
+auth.onAuthStateChanged(user => {
+
+	if(user){
+	  //push to FB
+	  console.log("im here")
+	  docRef = db.collection('users').doc(user.uid).collection('outfits')
+		//for loop through all votes in the "votes" collection
+		docRef.get().then(snap => {
+		  snap.forEach((doc) => {
+			console.log(doc.id);
+			console.log(doc.data());
+			document.getElementById("imagegallery").innerHTML += `<label class="card outfitSelCard">
+			<input type="checkbox" class="outfitCheckBox" name="outfitSel" value="${doc.data().outfitData.url}" onclick="return voteLimit()"/>
+			<div class="card-content">
+			  <img src="${doc.data().outfitData.url}"/>
+			  <div class="content outfitSelContent">
+				<h4>${doc.data().outfitData.name}</h4>
+			  </div>
+			</div>
+		  </label>`
+		  //console.log here to visualise dataset
+		  });
+		});      
+	}
+  
+	else {
+	  console.log("this shit is not working")
+	}
+  })
+
 //Insert Data functions
-//generates random id;
-let generateId = () => {
-  let s4 = () => {
-      return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-  }
-  //return id of format 'aaaaaaaa'
-  return s4() + s4();
+  //Limit the number of votes
+  function voteLimit() {
+	var a = document.getElementsByName('outfitSel');
+	var newvar = 0;
+	var count;
+	for(count=0;count<a.length;count++){
+		if(a[count].checked==true){
+			newvar = newvar + 1;
+		}
+	}
+
+	if(newvar>=3){
+		document.getElementById('notvalid').innerHTML="Please only select two images"
+		return false;
+	}
+
 }
+
+function getimages() {
+
+	let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+	for (let i = 0; i < checkboxes.length; i++) {
+	imgarr.push(checkboxes[i].value)
+	}
+	// Converted array to string & alert
+	console.log(imgarr.toString())
+	}
 
 // Add a new document in collection "Votes"
 function createnewvote() {
-	var temp_id = generateId();
 	
 	auth.onAuthStateChanged(user => {
 		console.log("authentication")
@@ -56,8 +103,8 @@ function createnewvote() {
 				VoteTitle: votetitle.value,
 				VoteOccasion: voteoccasion.value,
 				VoteStatus: "Open",
-				outfit1img : "outift 1 goes here",
-				outfit2img : "outift 2 goes here",
+				outfit1img : imgarr[0],
+				outfit2img : imgarr[1],
 				Votecount1 : 0,
 				Votecount2 : 0,
 			})
@@ -74,26 +121,15 @@ function createnewvote() {
 }
 
 
-	auth.onAuthStateChanged(user => {
 
-		if(user){
-		  //push to FB
-		  console.log("im here")
-		  docRef = db.collection('users').doc(user.uid).collection('outfits')
-			//for loop through all votes in the "votes" collection
-			docRef.get().then(snap => {
-			  snap.forEach((doc) => {
-				console.log(doc.id);
-				console.log(doc.data());
-				document.getElementById("imagegallery").innerHTML += `<img src=${doc.data().outfitData.url} style="width:100px;">`
-			  //console.log here to visualise dataset
-			  });
-			});      
-		}
-	  
-		else {
-		  console.log("this shit is not working")
-		}
-	  })
+
 // assign events to button
-sbtBtn.addEventListener("click", createnewvote);
+sbtBtn.addEventListener('click',() => {    
+	getimages();
+	createnewvote();    
+});
+
+
+
+
+

@@ -48,6 +48,8 @@ auth.onAuthStateChanged(user => {
             //retrieves number of likes from variables Votecount1 & Votecount2 and sets it in the html page
             document.getElementById("input1").innerHTML = doc.data().Votecount1
             document.getElementById("input2").innerHTML = doc.data().Votecount2
+            document.getElementById("outfitimg1").setAttribute("src", doc.data().outfit1img)
+            document.getElementById("outfitimg2").setAttribute("src", doc.data().outfit2img)
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");

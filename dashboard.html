@@ -26,12 +26,12 @@
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
-    
+    <link href="css/dashboard2.css" rel="stylesheet">
     
   </head>
   
-  <body onload="loadImages()">
-  
+  <!-- <body onload="loadImages()"> -->
+  <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center fixed-top">
       <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -46,6 +46,7 @@
             <li><a href="createvote.html">Create Poll</a></li>
             <li><a href="existingvotes.html">Existing Polls</a></li>
             <li><a href="profile.html">Profile</a></li>
+            <li><a href="addOutfit.html">Create Outfit</a></li>
           </ul>
         </nav>
         
@@ -64,25 +65,24 @@
     </header>
 
   <!-- <body onload="loadImages()"> -->
-    <div class="topnav">
+    <!-- <div class="topnav">
       <a class="active" href="dashboard.html">Closet</a>
       <a href="profile.html">Profile</a>
       <a href="existingvotes.html">Existing votes</a>
-      <a href="createvote.html">Start new vote</a>
-    </div>
+      <a href="createvote.html">Start new vote</a> -->
     <!-- add outfit button -->
-    <div>
+    <!-- <div>
       <a type="button" class="btn btn-primary" href="addOutfit.html"
         >add outfit</a
-      >
+      > -->
     </div>
     <!-- sign out button -->
-    <div>
+    <!-- <div>
       <button onclick="logout()" class="btn btn-warning">sign out</button>
-    </div>
+    </div> -->
     <!-- filter button -->
 
-    <div id="tablink" class="tablink">
+    <div id="tablink" class="tablink" style="margin-top:100px;">
       <ul>
           <li><button class="tablink" onclick="filterSelection('all')" id="defaultOpen">Show All</button></li>
           <li><button class="tablink" onclick="filterSelection('formal')">Formal</button></li>
@@ -107,16 +107,13 @@
       <button class="btn" onclick="filterSelection('bohemian')">Bohemian</button>
       <button class="btn" onclick="filterSelection('others')">Others</button>
     </div> -->
-    <p id="countResults" style="text-align:center; margin:20px;"></p>
+    <!-- <p id="countResults" style="text-align:left; margin:20px;"></p> -->
  
 
 <!-- <div class="row"> -->
-  <div class="header">
-    <h3 class="title">Title</h3>
-  </div>
-  
-  <div class="gallery">
-      <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
+  <div class="dashboard">
+    <!-- <p id="countResults" style="text-align:left; margin:20px;"></p> -->
+      <!-- <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
         <img
           src="assets/img/outfits/Fit 1.jpg"
           class="img-fluid w-100 shadow-1-strong rounded"
@@ -125,171 +122,31 @@
         <div class="gallery-links d-flex align-items-center justify-content-center">
           <a href="assets/img/outfits/Fit 1.jpg" title="Outfit 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
         </div>
+      </div> -->
+    <div class="container-fluid">
+      <p id="countResults"></p>
+      <div class="row d-flex flex-wrap justify-content-center align-content-center" id="dashboard"></div>
+      <div id="popup">
+        <img src="" id="selectedImage">
       </div>
-  <div class="container" id="load"></div>
-    <!-- <button class="handle right-handle">
-      <div class="text">&#8250;</div>
-    </button> -->
-  </div>
-  <!-- <div class="progress-bar"></div> -->
-<!-- </div> -->
-
-    <!-- TESTING DASHBOARD -->
-    <section id="gallery" class="gallery">
-      <div class="container-fluid">
-        <div class="text-center" style="margin-bottom: 80px;"><h1>More Styles On Armoire</h1></div>
-
-          <div class="row">
-            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-              <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-                <img
-                src="assets/img/outfits/Fit 1.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 1"
-                />
-                  <div class="gallery-links d-flex align-items-center justify-content-center">
-                  <a href="assets/img/outfits/Fit 1.jpg" title="Outfit 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 mb-4 mb-lg-0">
-              <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-                <img
-                src="assets/img/outfits/Fit 3.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 3"
-                />
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/outfits/Fit 3.jpg" title="Outfit 3" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-              </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 mb-4 mb-lg-0">
-          <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-            <img
-            src="assets/img/outfits/Fit 3.jpg"
-            class="img-fluid w-100 shadow-1-strong rounded"
-            alt="Fit 3"
-            />
-          <div class="gallery-links d-flex align-items-center justify-content-center">
-            <a href="assets/img/outfits/Fit 3.jpg" title="Outfit 3" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-          </div>
-      </div>
+      <!-- <button class="handle right-handle">
+        <div class="text">&#8250;</div>
+      </button> -->
     </div>
-
-    <div class="col-lg-3 mb-4 mb-lg-0">
-      <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-        <img
-        src="assets/img/outfits/Fit 3.jpg"
-        class="img-fluid w-100 shadow-1-strong rounded"
-        alt="Fit 3"
-        />
-      <div class="gallery-links d-flex align-items-center justify-content-center">
-        <a href="assets/img/outfits/Fit 3.jpg" title="Outfit 3" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-      </div>
+    <!-- <div class="progress-bar"></div> -->
   </div>
-</div>
 
-          </div>
-
-            <div class="row">
-              <div class="col-lg-6 mb-4 mb-lg-0">
-                <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-                  <img
-                  src="assets/img/outfits/Fit 26.jpg"
-                  class="img-fluid w-100 shadow-1-strong rounded"
-                  alt="Fit 2"
-                  />
-                    <div class="gallery-links d-flex align-items-center justify-content-center">
-                  <a href="assets/img/outfits/Fit 26.jpg" title="Outfit 26" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-            <div class="col-lg-3 mb-4 mb-lg-0">
-                <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-                  <img
-                  src="assets/img/outfits/Fit 3.jpg"
-                  class="img-fluid w-100 shadow-1-strong rounded"
-                  alt="Fit 3"
-                  />
-                <div class="gallery-links d-flex align-items-center justify-content-center">
-                  <a href="assets/img/outfits/Fit 3.jpg" title="Outfit 3" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                </div>
-            </div>
-          </div>
-      
-              <!-- <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-                <img
-                  src="assets/img/outfits/Fit 4.jpg"
-                  class="img-fluid w-100 shadow-1-strong rounded"
-                  alt="Fit 4"
-                />
-                <div class="gallery-links d-flex align-items-center justify-content-center">
-                  <a href="assets/img/outfits/Fit 4.jpg" title="Outfit 4" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                </div>
-              </div>
-            </div> -->
-    
-          <div class="col-lg-3 mb-4 mb-lg-0">
-            <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-              <img
-                src="assets/img/outfits/Fit 22.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 5"
-              />
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/outfits/Fit 22.jpg" title="Outfit 22" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-              </div>
-            </div>
-    
-            <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-              <img
-                src="assets/img/outfits/Fit 6.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 6"
-              />
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/outfits/Fit 6.jpg" title="Outfit 6" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-              </div>
-            </div>
-
-            <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-              <img
-                src="assets/img/outfits/Fit 7.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 7"
-              />
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/outfits/Fit 7.jpg" title="Outfit 7" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-              </div>
-            </div>
-      
-            <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-              <img
-                src="assets/img/outfits/Fit 27.jpg"
-                class="img-fluid w-100 shadow-1-strong rounded"
-                alt="Fit 17"
-              />
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/outfits/Fit 27.jpg" title="Outfit 27" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-              </div>
-            </div>
-
-            <!-- TESTING DASHBOARD -->
-
+  <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
+  <a href="addOutfit.html" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-plus"></i></a>
   </body>
   <!-- Vendor JS Files -->
-  <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script> -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script> 
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <!-- <script src="assets/vendor/aos/aos.js"></script> -->
-  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
+  <script src="assets/vendor/aos/aos.js"></script> 
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- need for hover -->
+  <!-- MAIN JS need for hover -->
   <script src="assets/js/main.js"></script>
 
 

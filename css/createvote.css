@@ -10,14 +10,19 @@
 body {
   background: #fbf6ef;
   padding: 0 10px;
+
+}
+
+.row {
+  justify-content: center;
 }
 
 
 .wrapper {
-  max-width: 500px;
-  width: 100%;
+  /* max-width: 500px;
+  width: 100%; */
   background: rgb(236, 226, 219);
-  margin: auto;
+  /* margin: auto; */
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);
   padding: 30px;
   border-radius: 10px;
@@ -144,4 +149,132 @@ body {
   .wrapper .form .inputfield.terms {
     flex-direction: row;
   }
+}
+
+/* Vote Image Selection Div */
+.voteSel {
+  color: #757575;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+#showCreateVote {
+  position: sticky;
+  top: 5%;
+}
+
+#load .img-container {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.voteSel .row {
+  display: block;
+}
+
+.outfitSelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90%;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.outfitSelCard {
+  position: relative;
+  height: 300px;
+  width: 200px;
+  margin: 10px;
+}
+
+.outfitSelCard input {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.outfitSelCard input:checked~.card-content {
+  border-color: green;
+}
+
+.outfitSelCard .card-content {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.outfitSelCard img {
+  position: relative;
+  height: 100%;
+  width: 300px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: all ease 0.3s;
+}
+
+.outfitSelCard:hover img {
+  width: 150%;
+  height: 400px;
+}
+
+.outfitSelCard input:checked~.outfitSelContent img {
+  filter: greyscale(0.4);
+}
+
+.outfitSelContent h4 {
+  margin: 0 0 8px 0;
+}
+
+.outfitSelCard:active {
+  transform: scale(0.96);
+}
+
+.outfitSelContent {
+  position: absolute;
+  bottom: -122px;
+  width: 100%;
+  padding: 12px;
+  background-color: #ffffff;
+  transition: all ease 0.3s;
+}
+
+.outfitSelCard:hover .outfitSelContent {
+  bottom: 0;
+}
+
+.outfitSelCard input:checked~.outfitSelCard:before,
+.outfitSelCard input:checked~.outfitSelContent:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+}
+
+.card-content:before {
+  height: 20px;
+  width: 20px;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.card-content:after {
+  height: 4px;
+  width: 8px;
+  top: 16px;
+  right: 16px;
+  border: 1px solid #ffffff;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+}
+
+#imagegallery {
+  justify-content: center;
 }

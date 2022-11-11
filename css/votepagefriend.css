@@ -1,0 +1,20 @@
+  /* navbar css */
+  /* Header */
+  .mainheader {
+      font-family: Palatino, Palatino Linotype, Georgia, Times, "Times New Roman", serif;
+      text-align: center;
+      font-size: larger;
+  }
+
+  .voteheader {
+      text-align: center;
+      font-size: 30;
+  }
+
+  .cardrow {
+      justify-content: center;
+  }
+
+  img {
+      height: 450px;
+  }

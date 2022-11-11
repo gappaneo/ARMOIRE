@@ -1,0 +1,39 @@
+<!-- add outfit -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Outfit</title>
+</head>
+<body>
+    <div>
+        <span style="font-style: bold, underline; color: brown;">
+            name:
+        </span> 
+        <input type="text" id="outfitName">
+        <br>
+        <span style="font-style: bold, underline; color: brown;">
+            style:
+        </span>
+        <input type="text" id="outfitStyle">
+        <br>
+        <span style="font-style: bold, underline; color: brown;">
+            description:
+        </span>
+        <input type="textarea" id="outfitDescription">
+        <br>
+        <img id="outfitImg" src="" width="150">
+    </div>
+    <button onclick="updateOutfitData()">confirm update</button>
+    <button onclick="showUpdatedOutfit()">back</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+<!-- html js --->
+<script src="js/updateOutfit.js"></script>
+</html>

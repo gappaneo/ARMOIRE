@@ -248,21 +248,21 @@
   
   .tablink li {
   position: relative;
-  border-bottom: 4px solid #E5D5C6;
+  /* border-bottom: 4px solid #E5D5C6; */
   }
   .tablink {
   border: 0px;
   display: flex;
   align-items: center;
   /* justify-content: space-between; */
-  padding: 0px 20px 0px 20px;
+  padding: 8px 20px 8px 20px;
   font-family: var(--font-secondary);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 14px;
   font-weight: 600;
-  color: #482B1B;
-  background-color:#E5D5C6 ;
+  color: #E5D5C6;
+  background-color: #482B1B ;
   white-space: nowrap;
   transition: 0.3s;
   justify-content: center;
@@ -273,3 +273,76 @@
     color: #fff;
     border-color:#fff;
   }
+
+/*--------------------------------------------------------------
+# Gallery Section
+--------------------------------------------------------------*/
+#countResults {
+  color: var(--color-primary);
+  text-align: left;
+  margin: 20px;
+}
+
+.dashboard {
+  margin: 40px;
+  /* padding: 20px 0 20px 0; */
+}
+
+.dashboard h1 {
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+}
+
+.dashboard .dashboard-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.dashboard .dashboard-item img {
+  transition: 0.3s;
+}
+
+.dashboard .dashboard-links {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.dashboard .dashboard-links .preview-link,
+.dashboard .dashboard-links .details-link {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 0.3s;
+  line-height: 1.2;
+  margin: 30px 8px 0 8px;
+}
+
+.dashboard .dashboard-links .preview-link:hover,
+.dashboard .dashboard-links .details-link:hover {
+  color: #fff;
+}
+
+.dashboard .dashboard-links .details-link {
+  font-size: 30px;
+  line-height: 0;
+}
+
+.dashboard .dashboard-item:hover .dashboard-links {
+  opacity: 1;
+}
+
+.dashboard .dashboard-item:hover .preview-link,
+.dashboard .dashboard-item:hover .details-link {
+  margin-top: 0;
+}
+
+.dashboard .dashboard-item:hover img {
+  transform: scale(1.05);
+}

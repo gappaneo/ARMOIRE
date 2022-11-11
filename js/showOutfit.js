@@ -38,7 +38,7 @@ function loadInfo(){
     })
 
 }
-// need to store name of images another way because that is now to remove from storage ref
+
 function deleteOutfit(){
     auth.onAuthStateChanged(user => {
         if(user){
@@ -63,4 +63,8 @@ function deleteOutfit(){
             })
         }
     })
+}
+
+function updateOutfit(){
+    window.location.href = "updateOutfit.html?id=" + vars.id
 }

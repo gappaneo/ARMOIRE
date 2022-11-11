@@ -13,6 +13,7 @@ var firebaseConfig = {
 var app = firebase.initializeApp(firebaseConfig)
 var db = app.firestore()
 var auth = app.auth()
+
 //set up cloud storage
 var storage = firebase.storage();
 var storageRef = storage.ref(); 
@@ -28,27 +29,15 @@ auth.onAuthStateChanged((user) => {
 	console.log("user: ", user)
 })
 
-//preview image
-const reader = new FileReader;
-let imgPreview = document.querySelector('#imgPreview');
-const fileInput = document.querySelector('#photo');
-reader.onload = e => {
-    imgPreview.src = e.target.result;
-}
-fileInput.addEventListener('change', e => {
-    const f = e.target.files[0];
-    console.log(f);
-    reader.readAsDataURL(f);
-})
-
-const form = document.getElementById("addOutfit")
+// const form = document.getElementById("addOutfit")
 function add(e){
     // e.preventDefault();
     console.log("adding")
 
     var outfitImg = document.querySelector("#photo").files[0];
+    cleanedName = outfitImg.name.replaceAll(' ', '')
     var date = new Date();
-    const imgName = date.getTime() + outfitImg.name;
+    const imgName = date.getTime() + cleanedName;
     console.log("IMG NAME:" + imgName);
     const task = storageRef.child(imgName).put(outfitImg);
     task
@@ -60,13 +49,14 @@ function add(e){
         var outfitImg = url
         var outfitName = document.getElementById('outfitName').value
         var outfitStyle = document.getElementById('outfitStyle').value   
+        var outfitDescription = document.getElementById( 'description').value
 
         //outfit data
         var outfitData = {
             url: outfitImg,
             name: outfitName,
-            style: outfitStyle
-            // date: date
+            style: outfitStyle,
+            description: outfitDescription
         }
 
         console.log(outfitData)
@@ -89,7 +79,58 @@ function add(e){
             }
         })
     })
-    // window.location.assign("dashboard.html")
 }
 
+/*  ==========================================
+    SHOW UPLOADED IMAGE
+* ========================================== */
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#imageResult')
+                .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(function () {
+    $('#upload').on('change', function () {
+        readURL(input);
+    });
+});
+
+/*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+var input = document.getElementById( 'photo' );
+var infoArea = document.getElementById( 'photo-label' );
+
+console.log(infoArea)
+
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
+  console.log(infoArea.textContent)
+}
+
+  /**
+   * Scroll top button
+   */
+   const addOutfit = document.querySelector('.add-outfit');
+   if (addOutfit) {
+     const togglescrollTop = function() {
+       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+     }
+     window.addEventListener('load', togglescrollTop);
+     document.addEventListener('scroll', togglescrollTop);
+     scrollTop.addEventListener('click', window.scrollTo({
+       top: 0,
+       behavior: 'smooth'
+     }));
+   }
 

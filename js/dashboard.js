@@ -14,137 +14,168 @@ var firebaseConfig = {
 var app = firebase.initializeApp(firebaseConfig);
 var db = app.firestore().collection("users");
 var auth = app.auth();
-var outfits = [];
 
 
 function filterSelection(query){
   //clear existing elements
   // console.log("before", e)
   //e.firstElementChild can be used.
-  var e = document.getElementById("load");
+  // var e = document.getElementById("load");
+  // e.innerHTML = "";
+  var e = document.getElementById("dashboard");
   e.innerHTML = "";
   // document.getElementById("query")
   console.log("query = " + query) 
   loadImages(query)
-  
 }
-
-
+  
+// }
+//load all before query
 function loadImages(query){
-  var container = document.getElementById('load');
-  var docFrag = document.createDocumentFragment();
-  var count = 0
   firebase.auth().onAuthStateChanged((user) => {
+    // var e = document.getElementById("load");
+    // e.innerHTML = "";
+    var container = document.getElementById('dashboard');
+    var colDiv1 = document.createElement("div")
+    colDiv1.setAttribute("class", "col-lg-3 col-md-6 col-sm-12 mb-4 mb-lg-0");
+    var colDiv2 = document.createElement("div")
+    colDiv2.setAttribute("class", "col-lg-3 col-md-6 col-sm-12 mb-4 mb-lg-0")
+    var colDiv3 = document.createElement("div")
+    colDiv3.setAttribute("class", "col-lg-3 col-md-6 col-sm-12 mb-4 mb-lg-0")
+    var colDiv4 = document.createElement("div")
+    colDiv4.setAttribute("class", "col-lg-3 col-md-6 col-sm-12 mb-4 mb-lg-0")
+    var col_count = 1
+    var count = 0
+    
+
     if (user) {
       const userId = user.uid;
       console.log("uid=", userId);
-      const userDB = db.doc(userId).collection("outfits")
-        userDB.get()
-        .then((querySnapshot) => {          
-
-          ////////////////////////////////////////////////////////////////
+      const userDB = db
+        .doc(userId)
+        .collection("outfits")
+        .get()
+        .then((querySnapshot) => {
+          
           querySnapshot.forEach((doc) => {
-            // console.log(doc.id, "=", doc.data());
             var outfitStyle = doc.data().outfitData.style;
-            console.log(outfitStyle, query)     //query 
-            
-            //if query ALL
+            console.log(doc.id, "=", doc.data());
+            console.log("count=", col_count);
+
+            //query == 'all'
             if (query == 'all'){
               count = querySnapshot.size
               imgURL = doc.data().outfitData.url
-              // console.log(doc.data().outfitData.url);
-              // outfits.push(doc.data().outfitData.url);
-    
+              
               // images for dashboard
               //create image tag
               var img = document.createElement('img');
               img.src = imgURL
-//               img.width = '100'
-              console.log(img)
-              
+              img.alt = doc.id
+              img.setAttribute("class","img-fluid w-100 shadow-1-strong rounded")
+              // img.height = '100'
+
               //create inner dig tag
               var iDiv = document.createElement('div');
-              iDiv.setAttribute("class","gallery-links d-flex align-items-center justify-content-center")
+              iDiv.setAttribute("class","dashboard-links d-flex align-items-center justify-content-center")
               //create link tag
               var link = document.createElement('a');
+
               link.href = "showOutfit.html?id=" + doc.id
+              // link.href = "assets/img/outfits/Fit 7.jpg"
+              link.setAttribute("id", doc.id)
               link.setAttribute("class","glightbox preview-link")
               //create i tag
               var i = document.createElement('i');
               i.setAttribute("class","bi bi-arrows-angle-expand")
               //insert i into link 
               link.appendChild(i)
-    
               //insert link into inner div tag
               iDiv.appendChild(link);
-    
               //create outer div box tag
               var oDiv = document.createElement('div')
-              oDiv.setAttribute("class", 'container-fluid gallery-item mb-4')
+              oDiv.setAttribute("class", 'container-fluid dashboard-item mb-4')
               //insert img and inner div box
               oDiv.appendChild(img)
               oDiv.appendChild(iDiv)
-              docFrag.appendChild(oDiv);
-    
-              //add to docFrag 
-              console.log("docFrag", docFrag)
-              console.log(container)
-              container.appendChild(docFrag);
-              //show # results
-              document.getElementById("countResults").innerHTML = count + " results found";
-            }
-            else if (outfitStyle == query){
+
+              // see count, append accordingly
+              if (col_count == 1){
+                colDiv1.appendChild(oDiv)
+                console.log(colDiv1.innerHTML)
+              } else if (col_count == 2){
+                colDiv2.appendChild(oDiv)
+              } else if (col_count == 3){
+                colDiv3.appendChild(oDiv)
+              } else if (col_count == 4){
+                colDiv4.appendChild(oDiv)
+                col_count = 0
+              }
+              col_count ++
+        
+            } else if (outfitStyle == query){
               count ++
               imgURL = doc.data().outfitData.url
-              console.log(imgURL);
-              // outfits.push(doc.data().outfitData.url);
-
+              
               // images for dashboard
               //create image tag
               var img = document.createElement('img');
               img.src = imgURL
-//               img.width = '100'
-              // console.log(img)
-              
+              img.alt = doc.id
+              img.setAttribute("class","img-fluid w-100 shadow-1-strong rounded")
+
               //create inner dig tag
               var iDiv = document.createElement('div');
-              iDiv.setAttribute("class","gallery-links d-flex align-items-center justify-content-center")
+              iDiv.setAttribute("class","dashboard-links d-flex align-items-center justify-content-center")
               //create link tag
               var link = document.createElement('a');
+
               link.href = "showOutfit.html?id=" + doc.id
+              // link.href = "assets/img/outfits/Fit 7.jpg"
+              link.setAttribute("id", doc.id)
               link.setAttribute("class","glightbox preview-link")
               //create i tag
               var i = document.createElement('i');
               i.setAttribute("class","bi bi-arrows-angle-expand")
               //insert i into link 
               link.appendChild(i)
-
               //insert link into inner div tag
               iDiv.appendChild(link);
-
               //create outer div box tag
               var oDiv = document.createElement('div')
-              oDiv.setAttribute("class", 'container-fluid gallery-item mb-4')
+              oDiv.setAttribute("class", 'container-fluid dashboard-item mb-4')
               //insert img and inner div box
               oDiv.appendChild(img)
               oDiv.appendChild(iDiv)
 
-              //add to docFrag 
-              docFrag.appendChild(oDiv);
-              console.log("docFrag", docFrag);
-
-              // console.log(outfits);
-              console.log(container)
-              container.appendChild(docFrag);
-              // console.log(doc.data()) 
-            } else {
-            console.log("query not found")
+              // see count, append accordingly
+              if (col_count == 1){
+                colDiv1.appendChild(oDiv)
+                console.log(colDiv1.innerHTML)
+              } else if (col_count == 2){
+                colDiv2.appendChild(oDiv)
+              } else if (col_count == 3){
+                colDiv3.appendChild(oDiv)
+              } else if (col_count == 4){
+                colDiv4.appendChild(oDiv)
+                col_count = 0
+              }
+              col_count ++
             }
-          });          
-          
+          });
+
+          // console.log(outfits);
+          container.appendChild(colDiv1)
+          console.log(container)
+          container.appendChild(colDiv2)
+          console.log(container)
+          container.appendChild(colDiv3)
+          console.log(container)
+          container.appendChild(colDiv4)
+          console.log(container)
+          // container.appendChild(docFrag);
           //show # results
           document.getElementById("countResults").innerHTML = count + " results found";
-
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
@@ -154,84 +185,13 @@ function loadImages(query){
       console.log("User not authenticated, sign in again.");
     }
   });
-};
-// }
+}
 
 
 //load all before query
 firebase.auth().onAuthStateChanged((user) => {
-  var container = document.getElementById('load');
-  var docFrag = document.createDocumentFragment();
-  if (user) {
-    const userId = user.uid;
-    console.log("uid=", userId);
-    const userDB = db
-      .doc(userId)
-      .collection("outfits")
-      .get()
-      .then((querySnapshot) => {
-        count = querySnapshot.size
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id, "=", doc.data());
-          imgURL = doc.data().outfitData.url
-          // console.log(doc.data().outfitData.url);
-          // outfits.push(doc.data().outfitData.url);
-
-          // images for dashboard
-          //create image tag
-          var img = document.createElement('img');
-          img.src = imgURL
-//           img.width = '100'
-          console.log(img)
-          
-          //create inner dig tag
-          var iDiv = document.createElement('div');
-          iDiv.setAttribute("class","gallery-links d-flex align-items-center justify-content-center")
-          //create link tag
-          var link = document.createElement('a');
-          link.href = "showOutfit.html?id=" + doc.id
-          link.setAttribute("class","glightbox preview-link")
-          //create i tag
-          var i = document.createElement('i');
-          i.setAttribute("class","bi bi-arrows-angle-expand")
-          //insert i into link 
-          link.appendChild(i)
-
-          //insert link into inner div tag
-          iDiv.appendChild(link);
-
-          //create outer div box tag
-          var oDiv = document.createElement('div')
-          oDiv.setAttribute("class", 'container-fluid gallery-item mb-4')
-          //insert img and inner div box
-          oDiv.appendChild(img)
-          oDiv.appendChild(iDiv)
-          docFrag.appendChild(oDiv);
-
-          //add to docFrag 
-          console.log("docFrag", docFrag)
-        });
-        // console.log(outfits);
-        console.log(container)
-        container.appendChild(docFrag);
-        //show # results
-        document.getElementById("countResults").innerHTML = count + " results found";
-
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  } else {
-    window.location.href = "index.html";
-    console.log("User not authenticated, sign in again.");
-  }
+  loadImages("all");
 });
-
-// //link to showOutfit
-// document.getElementById("open").onclick = function(e){
-// 	e.preventDefault();
-// 	window.open(this.href+"?id=0ZC8f6jkX7qiQrWItEyl")
-// }
 
 //user logout
 var logout = () => {

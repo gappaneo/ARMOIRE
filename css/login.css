@@ -617,11 +617,11 @@ margin: 40px;
 }
 .form {
   width: 100%;
-  min-height: 30vh;
+  /* min-height: 30vh; */
   background: #E5D5C6;
   background-size: cover;
   position: relative;
-  margin: 0px;
+  /* margin: 0px; */
 }
 
 .form a{
