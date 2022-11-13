@@ -18,23 +18,22 @@ var auth = app.auth();
 
 function filterSelection(query){
   //clear existing elements
-  // console.log("before", e)
-  //e.firstElementChild can be used.
-  // var e = document.getElementById("load");
-  // e.innerHTML = "";
   var e = document.getElementById("dashboard");
   e.innerHTML = "";
-  // document.getElementById("query")
-  console.log("query = " + query) 
   loadImages(query)
+  var divs = document.getElementsByClassName("filters")
+  len = divs.length
+  for (var i = 0; i<len; i++) {
+    console.log(divs[i])
+    divs[i].setAttribute("class", "col filters tablink")
+  } 
+  document.getElementById(query).setAttribute("class", "col filters tablink tablink-active")
 }
   
-// }
-//load all before query
+
+//load image function
 function loadImages(query){
   firebase.auth().onAuthStateChanged((user) => {
-    // var e = document.getElementById("load");
-    // e.innerHTML = "";
     var container = document.getElementById('dashboard');
     var colDiv1 = document.createElement("div")
     colDiv1.setAttribute("class", "col-lg-3 col-md-6 col-sm-12 mb-4 mb-lg-0");
@@ -73,7 +72,6 @@ function loadImages(query){
               img.src = imgURL
               img.alt = doc.id
               img.setAttribute("class","img-fluid w-100 shadow-1-strong rounded")
-              // img.height = '100'
 
               //create inner dig tag
               var iDiv = document.createElement('div');
@@ -82,7 +80,7 @@ function loadImages(query){
               var link = document.createElement('a');
 
               link.href = "showOutfit.html?id=" + doc.id
-              // link.href = "assets/img/outfits/Fit 7.jpg"
+
               link.setAttribute("id", doc.id)
               link.setAttribute("class","glightbox preview-link")
               //create i tag
@@ -131,7 +129,6 @@ function loadImages(query){
               var link = document.createElement('a');
 
               link.href = "showOutfit.html?id=" + doc.id
-              // link.href = "assets/img/outfits/Fit 7.jpg"
               link.setAttribute("id", doc.id)
               link.setAttribute("class","glightbox preview-link")
               //create i tag
@@ -164,7 +161,6 @@ function loadImages(query){
             }
           });
 
-          // console.log(outfits);
           container.appendChild(colDiv1)
           console.log(container)
           container.appendChild(colDiv2)
@@ -173,7 +169,6 @@ function loadImages(query){
           console.log(container)
           container.appendChild(colDiv4)
           console.log(container)
-          // container.appendChild(docFrag);
           //show # results
           document.getElementById("countResults").innerHTML = count + " results found";
         })
@@ -189,8 +184,9 @@ function loadImages(query){
 
 
 //load all before query
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {  
   loadImages("all");
+  document.getElementById("all").setAttribute("class", "col filters tablink tablink-active")
 });
 
 //user logout
@@ -199,10 +195,8 @@ var logout = () => {
     .signOut()
     .then(() => {
       window.location.href = "index.html";
-      console.log("Sign-out successful");
     })
     .catch((error) => {
-      // An error happened.
-      console.log(error.message);
+      window.location.href = "index.html";
     });
 };

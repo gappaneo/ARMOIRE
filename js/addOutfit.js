@@ -29,56 +29,81 @@ auth.onAuthStateChanged((user) => {
 	console.log("user: ", user)
 })
 
-// const form = document.getElementById("addOutfit")
 function add(e){
-    // e.preventDefault();
     console.log("adding")
+    var name = document.getElementById('outfitName').value
+    var style = document.getElementById('outfitStyle').value  
+    var description = document.getElementById('description').value
 
-    var outfitImg = document.querySelector("#photo").files[0];
-    cleanedName = outfitImg.name.replaceAll(' ', '')
-    var date = new Date();
-    const imgName = date.getTime() + cleanedName;
-    console.log("IMG NAME:" + imgName);
-    const task = storageRef.child(imgName).put(outfitImg);
-    task
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-        imgURL = url;
-        console.log(url) //THIS IS WHAT I NEED TO CALL IMG 
+    if (name == ""){
+        document.getElementById("nameHelp").innerText = "Please enter a name."
+        document.getElementById("nameHelp").style.color = "red"
+        document.getElementById("nameHelp").style.fontStyle = "italic"
+    } else {
+        document.getElementById("nameHelp").innerText = ""
+    }
+    if (description == ""){
+        description = "nil"
+    }
+    if (style == "Choose..."){
+        document.getElementById("styleHelp").innerText = "Please select a style."
+        document.getElementById("styleHelp").style.color = "red"
+        document.getElementById("styleHelp").style.fontStyle = "italic"
+    } else {
+        document.getElementById("styleHelp").innerText = ""
+    }
+    if (document.getElementById("photo").files.length == 0){
+        document.getElementById("errorImage").innerText = "Upload a valid image."       
+    } else {
+        document.getElementById("errorImage").innerText = ""       
+    }
+    if (document.getElementById("photo").files.length > 0 && name != '' && style != "Choose..."){
+        var outfitImg = document.querySelector("#photo").files[0];
+        cleanedName = outfitImg.name.replaceAll(' ', '')
+        var date = new Date();
+        const imgName = date.getTime() + cleanedName;
+        console.log("IMG NAME:" + imgName);
+        const task = storageRef.child(imgName).put(outfitImg);
+        task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            imgURL = url;
+            console.log(url) //THIS IS WHAT I NEED TO CALL IMG 
 
-        var outfitImg = url
-        var outfitName = document.getElementById('outfitName').value
-        var outfitStyle = document.getElementById('outfitStyle').value   
-        var outfitDescription = document.getElementById( 'description').value
+            var outfitImg = url
+            var outfitName = name
+            var outfitStyle = style
+            var outfitDescription = description
 
-        //outfit data
-        var outfitData = {
-            url: outfitImg,
-            name: outfitName,
-            style: outfitStyle,
-            description: outfitDescription
-        }
-
-        console.log(outfitData)
-
-        //retrieve user id
-        auth.onAuthStateChanged(user => {
-            console.log("authentication")
-            if(user){
-                //push to FB
-                // var docName = date.getTime() + outfitIm
-                db.collection('users').doc(user.uid).collection('outfits').doc(imgName, "-", user.uid).set({
-                    outfitData
-                })
-                .then(()=> {
-                    console.log(outfitData, " added")
-                })
-                .catch((error) => {
-                    console.error("error adding outfit data", error);
-                })
+            //outfit data
+            var outfitData = {
+                url: outfitImg,
+                name: outfitName,
+                style: outfitStyle,
+                description: outfitDescription
             }
-        })
-    })
+
+            console.log(outfitData)
+
+            //retrieve user id
+            auth.onAuthStateChanged(user => {
+                console.log("authentication")
+                if(user){
+                    //push to FB
+                    db.collection('users').doc(user.uid).collection('outfits').doc(imgName, "-", user.uid).set({
+                        outfitData
+                    })
+                    .then(()=> {
+                        console.log(outfitData, " added");
+                        openPopup()
+                    })
+                    .catch((error) => {
+                        console.error("error adding outfit data", error);
+                    })
+                }
+            })
+        })        
+    }
 }
 
 /*  ==========================================
@@ -93,6 +118,7 @@ function readURL(input) {
                 .attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
+        document.getElementById("errorImage").innerText = ""
     }
 }
 
@@ -118,19 +144,26 @@ function showFileName( event ) {
   console.log(infoArea.textContent)
 }
 
-  /**
-   * Scroll top button
-   */
-   const addOutfit = document.querySelector('.add-outfit');
-   if (addOutfit) {
-     const togglescrollTop = function() {
-       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-     }
-     window.addEventListener('load', togglescrollTop);
-     document.addEventListener('scroll', togglescrollTop);
-     scrollTop.addEventListener('click', window.scrollTo({
-       top: 0,
-       behavior: 'smooth'
-     }));
-   }
+/**
+* Scroll top button
+*/
+const addOutfit = document.querySelector('.add-outfit');
+if (addOutfit) {
+    const togglescrollTop = function() {
+        window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+    }
+    window.addEventListener('load', togglescrollTop);
+    document.addEventListener('scroll', togglescrollTop);
+    scrollTop.addEventListener('click', window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    }));
+}
+
+// Pop Up of Outfit added Successfully
+function openPopup() {
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+  
+}
 

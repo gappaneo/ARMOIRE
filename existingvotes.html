@@ -4,28 +4,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/existingvotes.css" />
-    <title>Existing votes</title>
-    <!--HEADING-->
-    <div class="mainheader">
-      <h1>ARMOIRE</h1>
-    </div>
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <title> Armoire</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   </head>
-  <body>
-    <div class="topnav">
-      <a href="dashboard.html">Closet</a>
-      <a href="profile.html">Profile</a>
-      <a class="active" href="existingvotes.html">Existing Polls</a>
-      <a href="previousvotes.html">Previous Polls</a>
-      <a href="createvote.html">Start new poll</a>
-      
+
+  <body style="background-color: #E5D5C6;">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+  
+        <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+          <h1>ARMOIRE</h1>
+        </a>
+        
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li style="text-align: center;"><a href="dashboard.html">Closet</a></li>
+            <li><a href="createvote.html">Create Poll</a></li>
+            <li><a href="existingvotes.html" class="active">Existing Polls</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="addOutfit.html">Create Outfit</a></li>
+          </ul>
+        </nav>
+        
+        <!-- .navbar -->
+  
+        <div class="header-social-links">
+          <a href="#" class="facebook"><i class="bi bi-github"></i></a>
+        </div>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+  
+      </div>
+    </header>
+
+    <div id="tablink" class="tablink" style="margin-top:115px;">
+      <ul class="nav justify-content-center">
+        <li class="nav-item" id="pollBorder">
+          <button class="tablink" onclick="openPage('existingPolls', this, '#482B1B')" id="defaultOpen">Existing Polls</button>
+        </li>
+        <li class="nav-item">
+          <button class="tablink" onclick="openPage('previousPolls', this, '#482B1B')">Previous Polls</button>
+        </li>
+      </ul>
     </div>
 
-    <div>
-      <ol id="votelist">
-        <!-- all created votes are loaded here -->
-      </ol>
-    </div>
+    <div class="container shadow-sm my-5 py-5 px-5">
+      <div id="existingPolls" class="tabcontent">
+        <h1>Existing Polls</h1>
+        <div class="row px-4 py-4 h-100">
+          <div class="list-group" id="votelistOpen">
+          </div>
+        </div>
+      </div>
 
+      <div id="previousPolls" class="tabcontent">
+        <h1>Previous Polls</h1>
+        <div class="row px-4 py-4 h-100">
+          <div class="list-group" id="votelistClosed">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>

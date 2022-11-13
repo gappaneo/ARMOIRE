@@ -32,7 +32,8 @@ auth.onAuthStateChanged((user) => {
 	console.log("user: ", user)
 })
 
-
+var date = new Date();
+console.log(date)
 auth.onAuthStateChanged(user => {
 
 	if(user){
@@ -107,9 +108,10 @@ function createnewvote() {
 				outfit2img : imgarr[1],
 				Votecount1 : 0,
 				Votecount2 : 0,
+				datecreated : new Date().toLocaleString(),
 			})
 			.then(()=> {
-				alert("Vote has been created!")
+				console.log("Vote has been created!")
 				window.location.replace("dashboard.html");
 			})
 			.catch((error) => {

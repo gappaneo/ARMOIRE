@@ -90,6 +90,7 @@
                 <div class = "form">
                     <div id="Login" class="tabcontent">
                         <h2>Log In</h2>
+                        <p id="loginError" class="errorMessage" style="font-style: italic; color: red"></p>
                         <div class="form-row">
                             <div class="col-lg-7">
                                 <input type="email" placeholder="Enter Email Address" class="form-control my-3 p-3" name="loginEmail" id="loginEmail"/>
@@ -109,56 +110,63 @@
                         </div>
                     
                         <div>
-                            <p>Don't have an account? <a href="#" onclick="openPage('SignUpForm', this, '#E5D5C6')">Register here</a></p>
+                            <p>Don't have an account? <a style="color: #0000EE; text-decoration: underline;" href="#" onclick="openPage('SignUpForm', this, '#E5D5C6')">Register here</a></p>
                         </div>
                     </div>
 
                     <div id="SignUpForm" class="tabcontent">
                         <h2>Let's Create Your Account</h2>
                         <div class="form-row">
-                            <div class="col-lg-7">
-                                <input type="text" placeholder="Enter Name" class="form-control my-3 p-3" name="regName" id="regName"/>
+                            <div class="col">
+                                <input type="text" placeholder="Enter Name" class="form-control my-3 p-3" name="regName" id="regName" required/>
+                                <p id="nameError" class="errorMessage" style="font-style: italic; color: red"></p>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="col-lg-7">
-                                <input type="email" placeholder="Enter Email Address" class="form-control my-3 p-3" name="regEmail" id="regEmail"/>
+                            <div class="col">
+                                <input type="email" placeholder="Enter Email Address" class="form-control my-3 p-3" name="regEmail" id="regEmail" required/>
+                                <p id="emailError" class="errorMessage" style="font-style: italic; color: red"></p>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="col-lg-7">
-                                <input type="password" placeholder="Enter Password" class="form-control my-3 p-3" name="regPassword" id="regPassword"/>
+                            <div class="col">
+                                <input type="password" placeholder="Enter Password (minimum 6 characters)" class="form-control my-3 p-3" name="regPassword" id="regPassword" required/>
+                                <p id="passwordError" class="errorMessage" style="font-style: italic; color: red"></p>
+                            </div>
+                            <div class="col">
+                                <input type="password" placeholder="Re-enter Password" class="form-control my-3 p-3" name="confirmPassword" id="confirmPassword" required/>
+                                <p id="confirmError" class="errorMessage" style="font-style: italic; color: red"></p>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="col-lg-7">
+                            <div class="col">
                                 <button class="signupbtn mb-3" onclick="register()">Sign Up</button>
                             </div>
                         </div>
 
-                        <!-- <div class="popup" id="popup">
-                            <img src="assets/img/fits/Fit 15.jpg">
-                            <h2>Signed Up Successfully!</h2>
-                            <button>Back to Login</button>
-                            <button onclick="closePopup()">Close</button>
-                        </div> -->
-
                         <div>
-                            <p>Already have an account? <a href="login.html">Log in</a></p>
+                            <p>Already have an account? <a style="color: #0000EE; text-decoration: underline;" href="login.html">Log in</a></p>
                         </div>
                     </div>
                 </div>
 
                 <div id="overlay"></div>
-                <div class="popup" id="popup">
+                <div class="popup" id="popupSuccess">
                     <div id="overlay"></div>
                     <img src="assets/img/Green Tick Icon.png">
                     <h2>Signed Up Successfully!</h2>
                     <button class="backtologinbtn mb-2" onclick="startBrowsing()">Continue</button>
-                    <button class="cancelbtn" onclick="closePopup()">Close</button>
+                    <button class="cancelbtn" onclick="closePopup('popupSuccess')">Close</button>
+                </div>
+
+                <!-- Error pop up -->
+                <div class="popup" id="popupError">
+                    <div id="overlay"></div>
+                    <h2 id="errorMessage"></h2>
+                    <button class="cancelbtn" onclick="closePopup('popupError')">Close</button>
                 </div>
         </div>
         </div>

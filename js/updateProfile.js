@@ -17,6 +17,9 @@ var auth = app.auth()
 var storage = firebase.storage();
 var storageRef = storage.ref(); 
 
+/*  ==========================================
+    SHOW UPLOADED IMAGE
+* ========================================== */
 //preview image
 const reader = new FileReader;
 let imgPreview = document.querySelector('#profilePreview');
@@ -29,54 +32,95 @@ fileInput.addEventListener('change', e => {
     console.log(f);
     reader.readAsDataURL(f);
 })
+/*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+var input = document.getElementById( 'updatePhoto' );
+var infoArea = document.getElementById( 'photo-label' );
+
+console.log(infoArea)
+
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
+  console.log(infoArea.textContent)
+}
 
 function updatePicture(){
     user = firebase.auth().currentUser;
     var profilePicture = document.querySelector("#updatePhoto").files[0];
-    const imgName = user.uid+"_profilePicture";
-    const task = storageRef.child("profile").child(imgName).put(profilePicture);
-    // task
-    // .then(snapshot => snapshot.ref.getDownloadURL())
-    // .then(url => {
-    //     imgURL = url;
-    //     //retrieve user id
-    //     auth.onAuthStateChanged(user => {
-    //       console.log("authentication")
-    //       if(user){
-    //           user.updateProfile({photoURL: imgURL})
-    //           //console.log (imgURL) //THIS IS WHAT I NEED TO CALL IMG              
-    //           .then(()=> {
-    //               console.log(user.photoURL, " added")
-    //           })
-    //           .catch((error) => {
-    //               console.error("error adding outfit data", error);
-    //           })
-    //       }
-    //   })
-    // })
+    console.log(document.querySelector("#updatePhoto").files.length)
+    console.log(profilePicture)
+    if (document.querySelector("#updatePhoto").files.length > 0){
+        const imgName = user.uid + "_profilePicture";
+        const task = storageRef.child("profile").child(imgName).put(profilePicture);
+        task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            imgURL = url;
+            //retrieve user id
+            auth.onAuthStateChanged(user => {
+            //   console.log("authentication")
+            if(user){
+                user.updateProfile({photoURL: imgURL})
+                .then(()=> {
+                    openPopup("successful")
+                    document.getElementById("successMsg").innerText = "Profile picture successfully updated"
+                })
+                .catch((error) => {
+                    openPopup("error")
+                    document.getElementById("errorMsg").innerText = "Profile picture update failed"
+                })
+            }
+        })
+        })
+    } else{
+        openPopup("error")
+        document.getElementById("errorMsg").innerText = "Profile picture update failed.\nAdd valid image and try again."
+    }
+
 }
 
 function updateProfile(){
     user = firebase.auth().currentUser;
     
-    //update name
+    //update name and email
     var updateName = document.getElementById("updateName").value
+    var email = document.getElementById("updateEmail").value
     if (updateName == "") {
       updateName = this.user.displayName
-    }
-    user.updateProfile({displayName: updateName})
-
-    //update email
-    var email = document.getElementById("updateEmail").value
+    } 
     if (email == "") {
       email = this.user.email
     } 
-    user.updateEmail(email)
 
-    db.collection("users").doc(user.uid).update({
-      displayName: updateName,
-      email: email
+    user.updateEmail(email)
+    .then(() => {
+        user.updateProfile({displayName: updateName})
+        db.collection("users").doc(user.uid).update({
+        displayName: updateName,
+        email: email
+        })
+        .then(() => {
+            openPopup('successful')
+            document.getElementById("success").innerText = "Successfully updated account details."
+        })        
     })
+    .catch(err => {
+        openPopup('error');
+        console.log(err)
+        if (err.code == "auth/invalid-email"){  
+            document.getElementById('errorMsg').innerText = "Invalid email entered. Please enter a valid email."
+        } else if (err.code == "auth/email-already-in-use"){
+            document.getElementById("errorMsg").innerText = "Email already has an existing account."
+        } else if (err.code == 'auth/requires-recent-login') {
+            document.getElementById("errorMsg").innerText = "Session time out.\nPlease login again to update account details."
+        } else {
+            document.getElementById("errorMsg").innerText = "Email address update unsuccessful.\nPlease try again."
+        }
+    })    
 };
 
 function updatePassword(){
@@ -84,18 +128,46 @@ function updatePassword(){
 
     //update password
     var updatePassword = document.getElementById("updatePassword").value
-    user.updatePassword(updatePassword)
-    .then(()=>{
-        console.log("updated")
-    })
+    var confirmPassword = document.getElementById("confirmPassword").value
+
+    if (updatePassword == confirmPassword){
+        user.updatePassword(updatePassword)
+        .then(()=>{
+            openPopup("successful")
+            document.getElementById("successMsg").innerText = "Password successfully updated!"
+        })
+        .catch((err) =>{
+            //if require recent login
+            if (err.code == "auth/requires-recent-login"){
+                openPopup('error');
+                document.getElementById("errorMsg").innerText = "Session time out. Please login again to update account password"
+            } else{
+                error = err.message
+                document.getElementById("passwordError").innerText = err.message
+            }
+        })   
+    } else {
+        document.getElementById("passwordError").innerText = "Passwords do not match. Please re-enter password."
+    }
+
 };
 
 function deleteProfile(){
     const user = firebase.auth().currentUser;
-    user.delete(()=> {
-        alert("Successfully deleted profile")
+    // console.log(user.uid)
+    db.collection("users").doc(user.uid).delete()
+    .then(() => {
         window.location.href = "index.html"
-    }).catch((error) => {
-        alert("Error deleting profile")
     })
+    .catch((err) => {
+        if (err.code == "auth/requires-recent-login"){
+            openPopup('error');
+            document.getElementById("errorMsg").innerText = "Session time out. Please login again to delete account."
+            alert("Error deleting profile")
+        }
+    })
+}
+function openPopup(type) {
+    document.getElementById(type+"PopUp").style.display = "block";
+    document.getElementById(type+"Overlay").style.display = "block";
 }

@@ -20,10 +20,32 @@ let userDatabase = db.collection('users')
 //user registration
 const register = () => {
     const email = document.getElementById("regEmail").value
-    const name = document.getElementById("regName").value
-    const password = document.getElementById("regPassword").value
+    if (email == "" || !email.includes("@")){
+        document.getElementById("emailError").innerText = "Please enter a valid email address."
+    } else {
+        document.getElementById("emailError").innerText = ""
+    }
 
-    auth.createUserWithEmailAndPassword(email, password)
+    const name = document.getElementById("regName").value
+    if (name == ""){
+        document.getElementById("nameError").innerText = "Please enter a valid name."
+    } else {
+        document.getElementById("nameError").innerText = ""
+    }
+
+    const password = document.getElementById("regPassword").value
+    const confirmPassword = document.getElementById("confirmPassword").value
+    if (password == ""){
+        document.getElementById("passwordError").innerText = "Please enter a valid password with minimum 6 characters."
+    } else if (password != confirmPassword){
+        document.getElementById("passwordError").innerText = ""
+        document.getElementById("confirmError").innerText = "Passwords do not match."
+    } else {
+        document.getElementById("confirmError").innerText = ""
+    }
+
+    if (name && email && password == confirmPassword) {
+        auth.createUserWithEmailAndPassword(email, password)
         .then((res) => {
             var userId = res.user.uid
             console.log(userId)
@@ -37,22 +59,31 @@ const register = () => {
             userDatabase.doc(userId).set(userData)
             .then(() => {
                 console.log("Document written with ID: ", userId);
-                openPopup()
+                openPopup("popupSuccess")
+                //add name field to document
+                firebase.auth().currentUser.updateProfile({
+                displayName: name
+                })                
             })
             .catch((err) => {
-                console.error("Error addding document: ", err);
+                console.error("Error adding document: ", err);
             })
 
-            //add name field to document
-            firebase.auth().currentUser.updateProfile({
-                displayName: name
-            })
         })
         .catch((err) => {
-            alert(err.message)
             console.log(err.code)
-            console.log(err.message)
+            if (err.code == "auth/email-already-in-use"){
+                document.getElementById("errorMessage").innerText = "Email already has an existing account."
+            } else if (err.code == "auth/weak-password"){
+                document.getElementById("errorMessage").innerText = "Password is weak. Minimum 6 characters needed."
+            } else if (err.code == "auth/invalid-email"){
+                document.getElementById("errorMessage").innerText = "Email invalid."
+            }else {
+                document.getElementById("errorMessage").innerText = "Registration Failed, please try again."
+            }
+            openPopup("popupError")
         })
+    }
 }
 
 //user login
@@ -65,9 +96,12 @@ const login = () => {
         window.location.href = "dashboard.html"
     })
     .catch((err) => {
-        alert(err.message)
-        console.log(err.code)
-        console.log(err.message)
+        console.log(err)
+        if (err.code == 'auth/user-not-found'){
+            document.getElementById("loginError").innerText = "User not found."
+        } else {
+            document.getElementById("loginError").innerText = "Email or Password is incorrect"
+        }
     })
 }
 

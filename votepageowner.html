@@ -10,25 +10,74 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
     <!-- personal css  -->
     <link rel="stylesheet" href="css/votepageowner.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Vote page</title>
-    <!--HEADING-->  
-    <div class="mainheader">
-      <h1>ARMOIRE</h1>
-    </div>
+    
+    <!-- Google Web Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />    <title> Armoire</title>
   </head>
-  <body>
-    <div class="topnav">
-      <a href="dashboard.html">Closet</a>
-      <a href="profile.html">Profile</a>
-      <a class="active" href="existingvotes.html">Existing polls</a>
-      <a href="previousvotes.html">Previous polls</a>
-      <a href="createvote.html">Start new poll</a>
+  <body style="background-color: #E5D5C6;">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top position-relative">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+  
+        <a href="index.html" class="logo d-flex align-items-start me-auto me-lg-0">
+          <h1>ARMOIRE</h1>
+        </a>
+        
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="dashboard.html" class="active">Closet</a></li>
+            <li><a href="createvote.html">Create Poll</a></li>
+            <li><a href="existingvotes.html">Existing Polls</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="addOutfit.html">Create Outfit</a></li>
+            <li></li>
+          </ul>
+        </nav>
+        
+        <!-- .navbar -->
+        <button onclick="logout()" class="btn align-self-end"><i class="bi bi-box-arrow-right"></i>Log Out</button>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+  
+      </div>
+    </header>
+
+    <div class="container shadow-sm py-5 px-5" id="voteContainer">
+      <h1 id="votetitle">Vote Title</h1>
+      <p id="voteOccasion">Occasion</p>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header text-center">Outfit 1</h5>
+            <img src="" class="card-img-top" id="outfitimg1">
+            <div class="card-body">
+              <h5 class="card-title" id="input1">Voted by </h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card">
+            <h5 class="card-header text-center">Outfit 2</h5>
+            <img src="" class="card-img-top" id="outfitimg2">
+            <div class="card-body">
+              <h5 class="card-title" id="input2">Voted by </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="closebtn mt-5" onclick="closeVote()">Close Vote</button>
+      <button id="copybutton"><i class="material-symbols-outlined copy-link-button">content_copy</i></button>
     </div>
 
-    <div class="voteheader">
+    <!-- <div class="voteheader">
       <div id="votetitle">
         name of vote can go here
       </div>
@@ -44,9 +93,9 @@
     
 
     <div class="container">
-      <div class="cardrow row">
+      <div class="cardrow row"> -->
         <!-- first card  -->
-        <div class="col-lg-4 col-md-6">
+        <!-- <div class="col-lg-4 col-md-6">
           <div class="card">
             <img src="" class="card-img-top" id="outfitimg1"/>
             <div class="card-body">
@@ -59,10 +108,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- second card  -->
-        <div class="col-lg-4 col-md-6">
+        <!-- <div class="col-lg-4 col-md-6">
           <div class="card">
             <img src="" class="card-img-top" id="outfitimg2"/>
             <div class="card-body">
@@ -76,12 +125,12 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div>
+      <!-- <div>
         <button id="closebtn" onclick="closeVote()">Close Vote</button>
       </div>
-    </div>
+    </div> -->
 
 
 

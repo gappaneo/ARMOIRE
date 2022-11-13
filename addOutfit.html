@@ -28,40 +28,37 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  
   <link href="css/addoutfit.css" rel="stylesheet">
   
-</head>
+</head>    
 
-<header id="header" class="header d-flex align-items-center fixed-top">
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center fixed-top position-relative">
   <div class="container-fluid d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+    <a href="index.html" class="logo d-flex align-items-start me-auto me-lg-0">
       <h1>ARMOIRE</h1>
     </a>
     
     <nav id="navbar" class="navbar">
       <ul>
-        <li style="text-align: center;"><a href="dashboard.html" class="active">Closet</a></li>
+        <li><a href="dashboard.html">Closet</a></li>
         <li><a href="createvote.html">Create Poll</a></li>
         <li><a href="existingvotes.html">Existing Polls</a></li>
         <li><a href="profile.html">Profile</a></li>
-        <li><a href="addOutfit.html">Create Outfit</a></li>
+        <li><a href="addOutfit.html" style="text-decoration: 2px underline #482B1B">Create Outfit</a></li>
+        <li></li>
       </ul>
     </nav>
     
     <!-- .navbar -->
-
-    <div class="header-social-links">
-      <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
-      <a href="#" class="facebook"><i class="bi bi-github"></i></a>
-      <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
-    </div>
+    <button onclick="logout()" class="btn align-self-end"><i class="bi bi-box-arrow-right"></i>Log Out</button>
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
   </div>
-  </header>
+</header>
 
 <body>
   <div class="container position-absolute top-50 start-50 translate-middle shadow-sm my-5 py-5 px-5">
@@ -94,7 +91,7 @@
           <!-- Uploaded image area-->
           <!-- <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p> -->
           <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 50vh"></div>
-
+          <p id="errorImage" style="font-style: italic; color:  red"></p>
       </div>
     
       <div class="col-7 mx-auto px-4 my-auto">
@@ -105,7 +102,7 @@
         <div id="nameHelp" class="form-text mb-4">We recommend keeping your title at most 40 characters long.</div>
 
         <!-- Fit description -->
-        <label for="description" class="form-label mb-2">Description:</label>
+        <label for="description" class="form-label mb-2">Description: (Optional)</label>
         <input type="text" id="description" class="form-control mb-1" placeholder="Tell us more about your outfit!" id="description">
         <div id="descriptionHelp" class="form-text mb-4">We recommend keeping your title at most 200 characters long.</div>
 
@@ -129,8 +126,15 @@
 
       <!-- Save outfit button--> -->
         <button class="addOutfit" type="submit" onclick="add()">Save your new outfit</button>
+        
       </div>
     </div>
+  </div>
+  <div id="overlay"></div>
+  <div class="popup" id="popup">
+      <img src="assets/img/Green Tick Icon.png">
+      <h2>Outfit Created Successfully!</h2>
+      <button class="btn tablink addOutfit" onclick="window.location.href = 'dashboard.html'">Close</button>
   </div>
 
 

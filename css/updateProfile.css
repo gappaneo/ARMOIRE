@@ -1,5 +1,6 @@
+/* ref dashboard and update outfit csscss */
 /*--------------------------------------------------------------
-# Desktop Navigation
+# Navigation
 --------------------------------------------------------------*/
 @media (min-width: 1280px) {
   .navbar {
@@ -246,11 +247,11 @@
 
   }
   
-.tablink li {
-  position:relative;
-}
-
-.tablink {
+  .tablink li {
+  position: relative;
+  /* border-bottom: 4px solid #E5D5C6; */
+  }
+  .tablink {
   border: 0px;
   display: flex;
   align-items: center;
@@ -265,30 +266,27 @@
   background-color: #482B1B ;
   white-space: nowrap;
   transition: 0.3s;
-  position: relative;  
-}
-
-.tablink-active,
-.tablink li:hover{
-  color: #fff;  
-  text-decoration: underline #fff;
-}
+  justify-content: center;
+  }
+  
+  .tablink:hover,
+  .tablink li:hover{
+    /* color: #fff;
+    border-color:#fff; */
+    background: #F9F6F2;
+    color:#482B1B;
+    border: 2px solid #482B1B; 
+  }
 
 /*--------------------------------------------------------------
 # Gallery Section
 --------------------------------------------------------------*/
-#countResults {
-  color: var(--color-primary);
-  text-align: left;
-  margin: 20px;
-}
-
-.dashboard {
+.updateProfile {
   margin: 40px;
   /* padding: 20px 0 20px 0; */
 }
 
-.dashboard h1 {
+.updateProfile h1 {
   margin: 0 0 20px 0;
   font-size: 48px;
   font-weight: 500;
@@ -296,17 +294,17 @@
   font-family: var(--font-primary);
 }
 
-.dashboard .dashboard-item {
+.updateProfile .profile-item {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
 }
 
-.dashboard .dashboard-item img {
+.updateProfile .profile-item img {
   transition: 0.3s;
 }
 
-.dashboard .dashboard-links {
+.updateProfile .profile-links {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -315,8 +313,8 @@
   z-index: 3;
 }
 
-.dashboard .dashboard-links .preview-link,
-.dashboard .dashboard-links .details-link {
+.updateProfile .profile-links .preview-link,
+.updateProfile .profile-links .details-link {
   font-size: 20px;
   color: rgba(255, 255, 255, 0.5);
   transition: 0.3s;
@@ -324,25 +322,132 @@
   margin: 30px 8px 0 8px;
 }
 
-.dashboard .dashboard-links .preview-link:hover,
-.dashboard .dashboard-links .details-link:hover {
+.updateProfile .profile-links .preview-link:hover,
+.updateProfile .profile-links .details-link:hover {
   color: #fff;
 }
 
-.dashboard .dashboard-links .details-link {
+.updateProfile .profile-links .details-link {
   font-size: 30px;
   line-height: 0;
 }
 
-.dashboard .dashboard-item:hover .dashboard-links {
+.updateProfile .profile-item:hover .profile-links {
   opacity: 1;
 }
 
-.dashboard .dashboard-item:hover .preview-link,
-.dashboard .dashboard-item:hover .details-link {
+.updateProfile .profile-item:hover .preview-link,
+.updateProfile .profile-item:hover .details-link {
   margin-top: 0;
 }
 
-.dashboard .dashboard-item:hover img {
+.updateProfile .profile-item:hover img {
   transform: scale(1.05);
 }
+
+
+/*--------------
+from update outfit CSS
+---------------*/
+.container {
+  /* position: absolute; */
+  width: 1200px;
+  /* height: auto; */
+  /* padding: 80px; */
+  /* padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 80px;
+  padding-right: 80px; */
+  border-radius: 10px;
+  background-color: #F9F6F2;
+  /* max-height: 800px; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* margin-top: -350px;   */
+  /* margin-left: -600px;  */
+  
+}
+
+.container h1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  margin-bottom: 20px;
+}
+
+.container label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-secondary);
+}
+
+.updateProfilePage{
+  font-family: var(--font-secondary);
+  width: 100%;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: var(--color-primary);
+  border: 0px;
+}
+
+.subheading{
+  color: #482B1B
+}
+
+p {
+color: var(--color-primary);
+  font-family: var(--font-secondary);
+}
+
+.popup{
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  padding: 40px;
+  color: #333;
+  /* visibility: hidden; */
+  display:none;
+  transition: transform 0.4s, top 0.4s;
+  z-index: 1000;
+  }
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+    z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    }
+
+    #updatePhoto {
+      opacity: 0;
+      overflow: hidden;
+    }
+    
+    #photo-label {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+    

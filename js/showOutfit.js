@@ -28,8 +28,9 @@ function loadInfo(){
                 var outfitData = doc.data().outfitData
                 // console.log(doc.data())
                 document.getElementById('outfitName').innerText = outfitData.name
-                document.getElementById('outfitStyle').innerText = outfitData.style
+                document.getElementById('outfitStyle').innerText = outfitData.style.toUpperCase()
                 document.getElementById('outfitImg').src = outfitData.url
+                document.getElementById('outfitDescription').innerText = outfitData.description
             })
             .catch((error) => {
                 console.error("error adding outfit data", error);
@@ -50,16 +51,16 @@ function deleteOutfit(){
                 storageRef.delete().then(() => {
                     console.log("deleted image from storage")
                 }).catch((error) =>{
-                    console.log("error deleting");
+                    openPopup('error')
                 })
             })            
             // delete from FB
             docRef.delete()
             .then(() => {
-                console.log("Document deleted successfully")
+                window.location.href = "dashboard.html"
             })
             .catch((error) => {
-                console.error("error removing outfit data", error);
+                openPopup('error')
             })
         }
     })
@@ -68,3 +69,12 @@ function deleteOutfit(){
 function updateOutfit(){
     window.location.href = "updateOutfit.html?id=" + vars.id
 }
+
+function openPopup(type) {
+    document.getElementById(type + "PopUp").style.display = "block";
+    document.getElementById(type + "Overlay").style.display = "block";
+}
+function closePopup(type) {
+    document.getElementById(type + "PopUp").style.display = "none";
+    document.getElementById(type + "Overlay").style.display = "none";
+}  

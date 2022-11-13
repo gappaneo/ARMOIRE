@@ -8,10 +8,6 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
   
-    <!-- Favicons
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
-  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -26,117 +22,63 @@
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/dashboard2.css" rel="stylesheet">
     
   </head>
   
-  <!-- <body onload="loadImages()"> -->
   <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center fixed-top">
+    <header id="header" class="header d-flex align-items-center fixed-top position-relative">
       <div class="container-fluid d-flex align-items-center justify-content-between">
   
-        <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+        <a href="index.html" class="logo d-flex align-items-start me-auto me-lg-0">
           <h1>ARMOIRE</h1>
         </a>
         
         <nav id="navbar" class="navbar">
           <ul>
-            <li style="text-align: center;"><a href="dashboard.html" class="active">Closet</a></li>
+            <li><a href="dashboard.html" style="text-decoration: 2px underline #482B1B">Closet</a></li>
             <li><a href="createvote.html">Create Poll</a></li>
             <li><a href="existingvotes.html">Existing Polls</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="addOutfit.html">Create Outfit</a></li>
+            <li></li>
           </ul>
         </nav>
         
         <!-- .navbar -->
-  
-        <div class="header-social-links">
-          <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
-          <a href="#" class="facebook"><i class="bi bi-github"></i></a>
-          <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
-        </div>
+        <button onclick="logout()" class="btn align-self-end"><i class="bi bi-box-arrow-right"></i>Log Out</button>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
   
       </div>
     </header>
 
-  <!-- <body onload="loadImages()"> -->
-    <!-- <div class="topnav">
-      <a class="active" href="dashboard.html">Closet</a>
-      <a href="profile.html">Profile</a>
-      <a href="existingvotes.html">Existing votes</a>
-      <a href="createvote.html">Start new vote</a> -->
-    <!-- add outfit button -->
-    <!-- <div>
-      <a type="button" class="btn btn-primary" href="addOutfit.html"
-        >add outfit</a
-      > -->
-    </div>
-    <!-- sign out button -->
-    <!-- <div>
-      <button onclick="logout()" class="btn btn-warning">sign out</button>
-    </div> -->
-    <!-- filter button -->
 
-    <div id="tablink" class="tablink" style="margin-top:100px;">
-      <ul>
-          <li><button class="tablink" onclick="filterSelection('all')" id="defaultOpen">Show All</button></li>
-          <li><button class="tablink" onclick="filterSelection('formal')">Formal</button></li>
-          <li><button class="tablink" onclick="filterSelection('casual')" id="defaultOpen">Casual</button></li>
-          <li><button class="tablink" onclick="filterSelection('athleisure')">Athleisure</button></li>
-          <li><button class="tablink" onclick="filterSelection('streetwear')" id="defaultOpen">Streetwear</button></li>
-          <li><button class="tablink" onclick="filterSelection('party')">Party</button></li>
-          <li><button class="tablink" onclick="filterSelection('minimalist')" id="defaultOpen">Minimal</button></li>
-          <li><button class="tablink" onclick="filterSelection('bohemian')">Bohemian</button></li>
-          <li><button class="tablink" onclick="filterSelection('others')" id="defaultOpen">Others</button></li>
+    <!-- filter section -->
+    <div id="tablink" class="tablink justify-content-center">
+      <ul class="row" id="filters">
+          <li class="col filters tablink" onclick="filterSelection('all')" id="all">Show All</li>
+          <li class="col filters tablink" onclick="filterSelection('formal')" id="formal">Formal</li>
+          <li class="col filters tablink" onclick="filterSelection('casual')" id="casual">Casual</li>
+          <li class="col filters tablink" onclick="filterSelection('athleisure')" id="athleisure">Athleisure</li>
+          <li class="col filters tablink" onclick="filterSelection('streetwear')" id="streetwear">Streetwear</li>
+          <li class="col filters tablink" onclick="filterSelection('party')" id="party">Party</li>
+          <li class="col filters tablink" onclick="filterSelection('minimal')" id="minimal">Minimal</li>
+          <li class="col filters tablink" onclick="filterSelection('bohemian')" id="bohemian">Bohemian</li>
+          <li class="col filters tablink" onclick="filterSelection('others')" id="others">Others</li>
       </ul>
   </div>
-  <!-- testing tab link -->
-    <!-- <div id="query" style="text-align:center">
-      <button class="btn active" onclick="filterSelection('all')">Show all</button>
-      <button class="btn" onclick="filterSelection('formal')">Formal</button>
-      <button class="btn" onclick="filterSelection('casual')">Casual</button>
-      <button class="btn" onclick="filterSelection('athleisure')">Athleisure</button>
-      <button class="btn" onclick="filterSelection('streetwear')">Streetwear</button>
-      <button class="btn" onclick="filterSelection('party')">Party</button>
-      <button class="btn" onclick="filterSelection('minimalist')">Minimalist</button>
-      <button class="btn" onclick="filterSelection('bohemian')">Bohemian</button>
-      <button class="btn" onclick="filterSelection('others')">Others</button>
-    </div> -->
-    <!-- <p id="countResults" style="text-align:left; margin:20px;"></p> -->
- 
 
-<!-- <div class="row"> -->
-  <div class="dashboard">
-    <!-- <p id="countResults" style="text-align:left; margin:20px;"></p> -->
-      <!-- <div class="container-fluid gallery-item mb-4" style="padding-right: 0px;padding-left: 0px">
-        <img
-          src="assets/img/outfits/Fit 1.jpg"
-          class="img-fluid w-100 shadow-1-strong rounded"
-          alt="Fit 1"
-        />
-        <div class="gallery-links d-flex align-items-center justify-content-center">
-          <a href="assets/img/outfits/Fit 1.jpg" title="Outfit 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-        </div>
-      </div> -->
+  <div class="dashboard d-flex flex-wrap justify-content-center align-content-center">
     <div class="container-fluid">
       <p id="countResults"></p>
-      <div class="row d-flex flex-wrap justify-content-center align-content-center" id="dashboard"></div>
+      <div class="row" id="dashboard"></div>
       <div id="popup">
         <img src="" id="selectedImage">
       </div>
-      <!-- <button class="handle right-handle">
-        <div class="text">&#8250;</div>
-      </button> -->
     </div>
-    <!-- <div class="progress-bar"></div> -->
   </div>
 
-  <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
   <a href="addOutfit.html" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-plus"></i></a>
   </body>
   <!-- Vendor JS Files -->

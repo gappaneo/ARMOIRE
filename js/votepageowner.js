@@ -27,7 +27,7 @@ var voteurl = temparr[0].slice(8,length.tempvoteurl)
 var votestr = "voted" + voteurl
 var hasVoted = localStorage.getItem(votestr);
 
-// non-hardcoded version 
+// non-hardcoded version, change according to repo name
 var sharelinkurl = window.location.hostname + "/ARMOIRE/votepagefriend.html" + temp
 //hardcoded version
 // var sharelinkurl = "http://127.0.0.1:5500/votepagefriend.html" + temp
@@ -45,9 +45,11 @@ auth.onAuthStateChanged(user => {
             console.log("Document data:", doc.data().Votecount2);
             //set vote title in html page
             document.getElementById("votetitle").innerHTML = doc.data().VoteTitle
+            //Vote Occasion
+            document.getElementById("voteOccasion").innerHTML = doc.data().VoteOccasion
             //retrieves number of likes from variables Votecount1 & Votecount2 and sets it in the html page
-            document.getElementById("input1").innerHTML = doc.data().Votecount1
-            document.getElementById("input2").innerHTML = doc.data().Votecount2
+            document.getElementById("input1").innerHTML += `<strong>${doc.data().Votecount1}</strong> others`
+            document.getElementById("input2").innerHTML += `<strong>${doc.data().Votecount2}</strong> others`
             document.getElementById("outfitimg1").setAttribute("src", doc.data().outfit1img)
             document.getElementById("outfitimg2").setAttribute("src", doc.data().outfit2img)
         } else {
@@ -61,25 +63,13 @@ auth.onAuthStateChanged(user => {
   }
 })
 
-//set shareable link
-document.getElementById("sharelink").setAttribute("value", sharelinkurl)
-
-//link copying function 
-document.querySelectorAll(".copy-link").forEach((copyLinkParent) => {
-  const inputField = copyLinkParent.querySelector(".copy-link-input");
-  const copyButton = copyLinkParent.querySelector(".copy-link-button");
-  const text = inputField.value;
-
-  inputField.addEventListener("focus", () => inputField.select());
-
-  copyButton.addEventListener("click", () => {
-    inputField.select();
-    navigator.clipboard.writeText(text);
-
-    inputField.value = "Copied!";
-    setTimeout(() => (inputField.value = text), 2000);
-  });
+//link copying functionz 
+const copyButton = document.getElementById("copybutton");
+copyButton.addEventListener("click", () => {
+  alert("Link copied")
+  navigator.clipboard.writeText(sharelinkurl);
 });
+
 
 function closeVote() {
   auth.onAuthStateChanged(user => {

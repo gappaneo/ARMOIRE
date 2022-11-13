@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-# Desktop Navigation
+# Navigation
 --------------------------------------------------------------*/
 @media (min-width: 1280px) {
   .navbar {
@@ -246,11 +246,11 @@
 
   }
   
-.tablink li {
-  position:relative;
-}
-
-.tablink {
+  .tablink li {
+  position: relative;
+  /* border-bottom: 4px solid #E5D5C6; */
+  }
+  .tablink {
   border: 0px;
   display: flex;
   align-items: center;
@@ -265,30 +265,24 @@
   background-color: #482B1B ;
   white-space: nowrap;
   transition: 0.3s;
-  position: relative;  
-}
-
-.tablink-active,
-.tablink li:hover{
-  color: #fff;  
-  text-decoration: underline #fff;
-}
+  justify-content: center;
+  }
+  
+  .tablink:hover,
+  .tablink li:hover{
+    color: #fff;
+    border-color:#fff;
+  }
 
 /*--------------------------------------------------------------
 # Gallery Section
 --------------------------------------------------------------*/
-#countResults {
-  color: var(--color-primary);
-  text-align: left;
-  margin: 20px;
-}
-
-.dashboard {
+.profile {
   margin: 40px;
   /* padding: 20px 0 20px 0; */
 }
 
-.dashboard h1 {
+.profile h1 {
   margin: 0 0 20px 0;
   font-size: 48px;
   font-weight: 500;
@@ -296,17 +290,17 @@
   font-family: var(--font-primary);
 }
 
-.dashboard .dashboard-item {
+.profile .profile-item {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
 }
 
-.dashboard .dashboard-item img {
+.profile .profile-item img {
   transition: 0.3s;
 }
 
-.dashboard .dashboard-links {
+.profile .profile-links {
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -315,8 +309,8 @@
   z-index: 3;
 }
 
-.dashboard .dashboard-links .preview-link,
-.dashboard .dashboard-links .details-link {
+.profile .profile-links .preview-link,
+.profile .profile-links .details-link {
   font-size: 20px;
   color: rgba(255, 255, 255, 0.5);
   transition: 0.3s;
@@ -324,25 +318,88 @@
   margin: 30px 8px 0 8px;
 }
 
-.dashboard .dashboard-links .preview-link:hover,
-.dashboard .dashboard-links .details-link:hover {
+.profile .profile-links .preview-link:hover,
+.profile .profile-links .details-link:hover {
   color: #fff;
 }
 
-.dashboard .dashboard-links .details-link {
+.profile .profile-links .details-link {
   font-size: 30px;
   line-height: 0;
 }
 
-.dashboard .dashboard-item:hover .dashboard-links {
+.profile .profile-item:hover .profile-links {
   opacity: 1;
 }
 
-.dashboard .dashboard-item:hover .preview-link,
-.dashboard .dashboard-item:hover .details-link {
+.profile .profile-item:hover .preview-link,
+.profile .profile-item:hover .details-link {
   margin-top: 0;
 }
 
-.dashboard .dashboard-item:hover img {
+.profile .profile-item:hover img {
   transform: scale(1.05);
+}
+
+
+/*--------------
+from update outfit CSS
+---------------*/
+.container {
+  /* position: absolute; */
+  width: 1200px;
+  /* height: auto; */
+  /* padding: 80px; */
+  /* padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 80px;
+  padding-right: 80px; */
+  border-radius: 10px;
+  background-color: #F9F6F2;
+  /* max-height: 800px; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* margin-top: -350px;   */
+  /* margin-left: -600px;  */
+  
+}
+
+.container h1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  margin-bottom: 20px;
+}
+
+.container label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-secondary);
+}
+
+.profilePage{
+  font-family: var(--font-secondary);
+  width: 100%;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: var(--color-primary);
+  border: 0px;
+}
+
+.btn:hover {
+    background: #D0A68E;
+} 
+
+p {
+color: var(--color-primary);
+  font-family: var(--font-secondary);
 }

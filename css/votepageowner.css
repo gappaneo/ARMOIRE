@@ -1,58 +1,83 @@
-  /* navbar css */
-  /* Header */
-  .mainheader {
-      font-family: Palatino, Palatino Linotype, Georgia, Times, "Times New Roman", serif;
-      text-align: center;
-      font-size: larger;
+#voteContainer{
+    width: 1200px;
+    border-radius: 10px;
+    background-color:  #F9F6F2;
+    margin: auto;
   }
 
-  /* NAVIGATION BAR CSS */
-  /* Add a black background color to the top navigation */
-  .topnav {
-      font-family: Palatino, Palatino Linotype, Georgia, Times, "Times New Roman", serif;
-      background-color: rgb(236, 226, 219);
-
-      overflow: auto;
-      margin-top: 0;
-      margin-bottom: 0;
-      display: flex;
-      justify-content: center;
-
+  .card {
+    background-color: #E5D5C6;
   }
 
-  /* Style the links inside the navigation bar */
-  .topnav a {
-      float: left;
-      background-color: rgb(236, 226, 219);
-      color: #6a5b53;
-      text-align: center;
-      padding: 10px 50px 10px 50px;
-      text-decoration: none;
-      font-size: 17px;
-
+  #votetitle,
+  #voteOccasion,
+  .card-header,
+  .card-title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
   }
 
-  /* Change the color of links on hover */
-  .topnav a:hover {
-      background-color: #ddd;
-      color: black;
+  #votetitle{
+      text-align: left;
+      font-size: 48px;
   }
 
-  /* Add a color to the active/current link */
-  .topnav a.active {
-      background-color: #585858;
-      color: white;
-  }
-
-  .voteheader {
-      text-align: center;
-      font-size: 30;
-  }
-
-  .cardrow {
-      justify-content: center;
+  #voteOccasion {
+    text-align: left;
+    font-size: 16px;
   }
 
   img {
       height: 450px;
   }
+
+  .closebtn {
+    font-family: var(--font-secondary);
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    padding: 12px 36px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    color: #fff;
+    background: var(--color-primary);
+    border: 0px;
+  }
+
+  .closebtn:hover {
+    background-color:#D0A68E;
+  }
+
+.copy-link-button {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 40px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    transition: background 0.25s;
+
+    outline: blue;
+    border: none;
+    cursor: pointer;
+}
+
+.copy-link-button:active,
+.copy-link-button:hover {
+    background: #D0A68E;
+}
+
+.material-symbols-outlined {
+  padding-top: 17px;
+}

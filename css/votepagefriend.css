@@ -15,6 +15,132 @@
       justify-content: center;
   }
 
+  /* START  */
+
+  /* Fonts */
+  :root {
+      /* --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+      --font-primary: 'Playfair Display', serif;
+      --font-secondary: 'Open Sans', sans-serif;
+  }
+
+  /* Smooth scroll behavior */
+  :root {
+      scroll-behavior: smooth;
+  }
+
+  /*--------------------------------------------------------------
+  # General
+  --------------------------------------------------------------*/
+  body {
+      font-family: var(--font-secondary);
+      color: var(--color-default);
+      background-color: #E5D5C6;
+  }
+
+  a {
+      color: var(--color-primary);
+      text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-family: var(--font-primary);
+  }
+
+  /*--------------------------------------------------------------
+  # Sections & Section Header
+  --------------------------------------------------------------*/
+  .section-header {
+      padding-bottom: 40px;
+  }
+
+  .section-header h2 {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0;
+      line-height: 1px;
+      margin: 0 0 5px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-primary);
+  }
+
+  .section-header h2::after {
+      content: "";
+      width: 120px;
+      height: 1px;
+      display: inline-block;
+      background: #5bd9a9;
+      margin: 4px 10px;
+  }
+
+  .section-header p {
+      margin: 0;
+      margin: 0;
+      font-size: 36px;
+      font-weight: 700;
+      font-family: var(--font-primary);
+      color: #fff;
+  }
+
+
+  #voteContainer{
+    width: 1200px;
+    border-radius: 10px;
+    background-color:  #F9F6F2;
+    margin: auto;
+  }
+
+  .card {
+    background-color: #E5D5C6;
+  }
+
+  #votetitle,
+  #voteOccasion,
+  .card-header,
+  .card-title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+  }
+
+  #votetitle{
+      text-align: left;
+      font-size: 48px;
+  }
+
+  #voteOccasion {
+    text-align: left;
+    font-size: 16px;
+  }
+
   img {
       height: 450px;
+  }
+
+  #likebtn1,
+  #likebtn2 {
+    font-family: var(--font-secondary);
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    padding: 12px 36px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    color: #fff;
+    background: var(--color-primary);
+    border: 0px;
+  }
+
+  #likebtn1:hover,
+  #likebtn2:hover {
+    background-color:#D0A68E;
   }

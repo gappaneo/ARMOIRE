@@ -1,22 +1,119 @@
-<!-- add outfit -->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Outfit</title>
-    <!-- <script type="module" src="src/index.js"></script>   -->
-</head>
-<body onload="loadInfo()">
-    <div>
-        <span style="font-style: bold, underline; color: brown;">name:</span> <h1 id="outfitName"></h1>
-        <span style="font-style: bold, underline; color: brown;">style:</span><p id="outfitStyle"></p>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <title> Armoire</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+  
+    <!-- Favicons
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="css/addoutfit.css" rel="stylesheet">
+    <link href="css/showoutfit.css" rel="stylesheet">
+    
+  </head>
+  
+  <!-- <body onload="loadImages()"> -->
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+  
+        <a href="dashboard.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+          <h1>ARMOIRE</h1>
+        </a>
+        
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li style="text-align: center;"><a href="dashboard.html" class="active">Closet</a></li>
+            <li><a href="createvote.html">Create Poll</a></li>
+            <li><a href="existingvotes.html">Existing Polls</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="addOutfit.html">Create Outfit</a></li>
+          </ul>
+        </nav>
+        
+        <!-- .navbar -->
+  
+        <div class="header-social-links">
+          <a href="#" class="facebook"><i class="bi bi-github"></i></a>
+        </div>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+  
+      </div>
+    </header>
 
-        <img id="outfitImg" src="" width="150">
-    </div>
-    <button onclick="deleteOutfit()">Delete</button>
+<body onload="loadInfo()">
+
+    <div class="container position-absolute top-50 start-50 translate-middle shadow-sm my-5 py-5 px-5">
+      <a href="dashboard.html"><i class='bi bi-arrow-left' style="font-size:32px;"></i></a>
+  
+      <div class="row px-4 py-4 h-100">
+        <div class="col-6 mx-auto px-4" style="position: relative;
+        text-align: center;">
+          
+            <!-- loaded image -->
+            <img id="outfitImg" src="">
+        </div>
+      
+        <div class="col-6 mx-auto px-4 my-auto">
+          <a onclick="updateOutfit()"><i class='bi bi-pencil-square my-4' style="font-size:24px;"></i></a>
+          <i class='bi bi-trash-fill my-4 mx-4' onclick="openPopup('delete')" style="font-size:24px;"></i>
+          <h1 class="my-3"id="outfitName"></h1>
+       
+          <!-- Fit description -->
+          <!-- <p id = "outfitDescription"></p> -->
+          <p id = "outfitDescription" class="my-3"></p>
+
+          <!-- Style dropdown -->
+          <h5> <span class="badge my-2"><span id = "outfitStyle"></span></span></h5>
+          <p id = "outfitStyle"></p>
+
+        </div>
+      </div>
+
+        <!-- CFM DELETE POPUP -->
+        <div class="overlay" id="deleteOverlay">
+            <div class="popup" id="deletePopUp">
+                <h2>Confirm delete outfit?</h2>
+                <div class="row">
+                    <button class="btn tablink" onclick="deleteOutfit()">Yes, delete outfit.</button>
+                    <button class="btn tablink" onclick="closePopup('delete')">Cancel</button>                     
+                </div>
+            </div>
+        </div>
+
+        <!-- ERROR DELETE POPUP -->
+        <div class="overlay" id="errorOverlay">
+          <div class="popup" id="errorPopUp">
+              <h2>Error deleting outfit. Please try again later.</h2>
+              <div class="row">
+                  <button class="btn tablink" onclick="closePopup('error')">Back</button>                     
+              </div>
+          </div>
+      </div>              
+      </div>        
+    
+
+
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
