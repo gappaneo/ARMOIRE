@@ -21,6 +21,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
   
 </head>
@@ -34,24 +35,20 @@
         <h1>ARMOIRE</h1>
       </a>
 
-      <!-- ======= Nav Bar ======= -->
-
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="login.html">Sign In</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html"  class="active">Sign In</a></li>
         </ul>
       </nav>
 
-      <div class="header-social-links">
-        <a href="#" class="facebook"><i class="bi bi-github"></i></a>
-      </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>        
+      
     </div>
-</header>
+  </header>
+
+  <!-- End Header -->
     <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center">
 
         <div class="container">
@@ -105,7 +102,7 @@
                     
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <button class="loginbtn mb-3" onclick="login()">Login</button>
+                                <button class="loginbtn w-100" onclick="login()">Login</button>
                             </div>
                         </div>
                     
@@ -143,7 +140,7 @@
 
                         <div class="form-row">
                             <div class="col">
-                                <button class="signupbtn mb-3" onclick="register()">Sign Up</button>
+                                <button class="loginbtn mb-3" onclick="register()">Sign Up</button>
                             </div>
                         </div>
 
@@ -174,16 +171,17 @@
 
     </section>
 
-<script src="js/login.js"></script>
 
 </body>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-<script src="js/authentication.js">
+<script src="js/authentication.js"></script>
+<script src="js/login.js"></script>
+<script src="assets/js/main.js"></script>
 
 
-</script>
+
 
 </html>

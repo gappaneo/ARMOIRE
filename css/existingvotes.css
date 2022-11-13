@@ -2,6 +2,11 @@
     width: 1200px;
     border-radius: 10px;
     background-color:  #F9F6F2;
+    overflow: auto;
+  }
+
+  .pollHeader {
+    color:#482B1B;
   }
   
 

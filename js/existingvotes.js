@@ -28,7 +28,7 @@ auth.onAuthStateChanged(user => {
           document.getElementById("votelistOpen").innerHTML += `
           <a href=votepageowner.html?voteid=${doc.id}&userid=${user.uid} class='list-group-item list-group-item-action'>
           <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1" style="font-weight: bold;">Poll Title: ${doc.data().VoteTitle}</h5>
+          <h5 class="mb-1">Poll Title: ${doc.data().VoteTitle}</h5>
           <small>${doc.data().datecreated}</small>
           </div>
           <p class="mb-1">${doc.data().VoteOccasion}</p></a>`;

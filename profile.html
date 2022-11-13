@@ -30,7 +30,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top position-relative">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-start me-auto me-lg-0">
+      <a href="dashboard.html" class="logo d-flex align-items-start me-auto me-lg-0">
         <h1>ARMOIRE</h1>
       </a>
       
@@ -46,7 +46,7 @@
       </nav>
       
       <!-- .navbar -->
-      <button onclick="logout()" class="btn align-self-end"><i class="bi bi-box-arrow-right"></i>Log Out</button>
+      <button onclick="cfmLogoutPopup()" class="btn align-self-end"><i class="bi bi-box-arrow-right mx-2"></i>Log Out</button>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -55,6 +55,7 @@
   
   <body>
     <div class="container position-relative shadow-sm my-5 py-5 px-5">
+      <a href="dashboard.html"><i class='bi bi-arrow-left backArrow' style="font-size:32px;"></i></a>
       <div class="row px-4 py-4 h-100">
         <div class="col-6 mx-auto px-4" style="position: relative; text-align: center;">
           
@@ -72,14 +73,25 @@
           <p style="font-weight: bold">Email:</p>
           <p id = "profileEmail" class="my-3"></p>
 
-          <button class="tablink btn" onclick="window.location.href='./updateProfile.html'">
+          <button class="btn-standard mb-3" onclick="window.location.href='./updateProfile.html'">
           edit account settings
           </button>
-        <br><button class="tablink btn" onclick="logout()">log out</button>
-
+        <br><button class="btn-standard" onclick="cfmLogoutPopup()">log out</button>
         </div>
+      </div>        
+      <!-- LOGOUT POPUP -->
+      <div class="overlay" id="logoutOverlay">
+        <div class="popup" id="logoutPopup">
+            <h2>Confirm Log Out?</h2>
+            <div class="row">
+                <button class="btn-standard mb-3" onclick="logout()">Yes</button>
+                <button class="cancelbtn" onclick="closeLogoutPopup()">Back</button>                            
+            </div>
         </div>
+      </div>
+      
     </div>
+
 
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -87,5 +99,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 <!-- html js --->
-<script src="js/profile.js"></script>
+<script src="js/profile.js"></script>  
+<!-- MAIN JS -->
+<script src="assets/js/main.js"></script>
 </html>

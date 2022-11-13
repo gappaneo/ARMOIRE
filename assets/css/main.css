@@ -39,6 +39,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-primary);
+  color: var(--color-primary);
 }
 
 /*--------------------------------------------------------------
@@ -667,24 +668,6 @@ h6 {
   font-size: 18px;
 }
 
-.hero .btn-get-started {
-  font-family: var(--font-secondary);
-  font-weight: 600;
-  font-size: 14px;
-  display: inline-block;
-  padding: 12px 36px;
-  border-radius: 100px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: 0.3s;
-  color: #fff;
-  background: var(--color-primary);
-}
-
-.hero .btn-get-started:hover {
-  background: #D0A68E;
-}
-
 @media (max-width: 768px) {
   .hero h2 {
     font-size: 32px;
@@ -1067,3 +1050,105 @@ h6 {
   z-index: 0;
 }
 
+/*--------------------------------------------------------------
+# Buttons section
+--------------------------------------------------------------*/
+.btn-standard {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: var(--color-primary);
+  justify-content: center;
+  border: 0px;
+}
+
+.btn-standard:hover {
+  background: #D0A68E;
+  color: #fff;
+}
+
+.cancelbtn {
+  font-family: var(--font-secondary);
+  width: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #482B1B;
+  background: white;
+  border: 1px solid #482B1B;
+  }
+  
+ .cancelbtn:hover{
+    border: 1px solid #D0A68E;
+    color: #D0A68E
+  }
+
+.form .signupbtn {
+font-family: var(--font-secondary);
+width: 100%;
+font-weight: 600;
+font-size: 14px;
+display: inline-block;
+padding: 12px 36px;
+border-radius: 100px;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: 0.3s;
+color: #fff;
+background: var(--color-primary);
+border: 0px;
+}
+
+.form .signupbtn:hover {
+background: #D0A68E;
+} 
+i.backArrow{
+  color: #482B1B;
+  cursor: pointer;
+  font-size:32px;  
+}
+i.backArrow:hover{
+  color: #D0A68E;
+  cursor: pointer;
+}
+.popup{
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  padding: 40px;
+  color: #333;
+  /* visibility: hidden; */
+  display:none;
+  transition: transform 0.4s, top 0.4s;
+  z-index: 1000;
+  }
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+    z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    }

@@ -165,3 +165,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+//userlogoutpopup
+function cfmLogoutPopup() {
+  document.getElementById("logoutPopup").style.display = "block";
+  document.getElementById("logoutOverlay").style.display = "block";
+}
+
+function closeLogoutPopup() {
+  document.getElementById("logoutPopup").style.display = "none";
+  document.getElementById("logoutOverlay").style.display = "none";
+}
+
+//user logout
+function logout() {
+  auth
+    .signOut()
+    .then(() => {
+      window.location.href = "index.html";
+      console.log("Sign-out successful");
+    })
+    .catch((error) => {
+      // An error happened.
+      console.log(error.message);
+    });
+};

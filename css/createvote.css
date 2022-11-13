@@ -1,22 +1,93 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-}
-
 body {
-  background: #fbf6ef;
-  padding: 0 10px;
-
-}
-
-.row {
+  display: flex;
+  /* flex-direction: column; */
   justify-content: center;
+  min-height: 100%;
 }
 
+.container {
+  /* position: absolute; */
+  /* width: 1200px; */
+  /* height: auto; */
+  /* padding: 80px; */
+  /* padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 80px;
+  padding-right: 80px; */
+  border-radius: 10px;
+  background-color: #F9F6F2;
+  /* margin-top: 300px; */
+  /* margin-bottom: 300px; */
+  /* max-height: 800px; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* margin-top: -350px;   */
+  /* margin-left: -600px;  */
+  margin: 100px;
+  width: 100%;
+
+}
+
+.container h1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+  margin-bottom: 20px;
+}
+
+.container label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-secondary);
+}
+
+/* form */
+.form-control {
+  background-color: #F9F6F2;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.5); */
+  border-radius: 0px;
+}
+
+.form-control:focus {
+  background-color: #F9F6F2;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 2px solid rgba(0, 132, 255);
+  box-shadow: none;
+}
+
+.form-select:focus {
+  border: 2px solid rgba(0, 132, 255);
+  box-shadow: none;
+}
+
+.addOutfit {
+  font-family: var(--font-secondary);
+  width: 100%;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  color: #fff;
+  background: var(--color-primary);
+  border: 0px;
+}
+
+.addOutfit:hover {
+  background: #F9F6F2;
+  color: #482B1B;
+  border: 2px solid #482B1B;
+}
 
 .wrapper {
   /* max-width: 500px;
@@ -151,51 +222,112 @@ body {
   }
 }
 
+
+.gallery {
+  margin: 40px;
+  padding: 80px 0 80px 0;
+}
+
+.gallery h1 {
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+}
+
+.gallery .gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.gallery .gallery-item img {
+  transition: 0.3s;
+}
+
+.gallery .gallery-links {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+.gallery .gallery-links .preview-link,
+.gallery .gallery-links .details-link {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 0.3s;
+  line-height: 1.2;
+  margin: 30px 8px 0 8px;
+}
+
+.gallery .gallery-links .preview-link:hover,
+.gallery .gallery-links .details-link:hover {
+  color: #fff;
+}
+
+.gallery .gallery-links .details-link {
+  font-size: 30px;
+  line-height: 0;
+}
+
+.gallery .gallery-item:hover .gallery-links {
+  opacity: 1;
+}
+
+.gallery .gallery-item:hover .preview-link,
+.gallery .gallery-item:hover .details-link {
+  margin-top: 0;
+}
+
+.gallery .gallery-item:hover img {
+  transform: scale(1.05);
+}
+
 /* Vote Image Selection Div */
 .voteSel {
-  color: #757575;
-  margin-right: 10px;
-  font-size: 14px;
+  margin: none;
+  padding: 0px;
 }
 
-#showCreateVote {
+/* #showCreateVote {
   position: sticky;
   top: 5%;
-}
+} */
 
-#load .img-container {
+/* #load .img-container {
   width: 100%;
   height: auto;
   vertical-align: middle;
-}
+} */
 
-.voteSel .row {
+/* .voteSel .row {
   display: block;
-}
+} */
 
-.outfitSelContainer {
+/* .outfitSelContainer {
   display: flex;
   flex-wrap: wrap;
-  max-width: 90%;
-  width: 800px;
   margin: 0 auto;
-}
+} */
 
-.outfitSelCard {
+/* .outfitSelCard {
   position: relative;
-  height: 300px;
-  width: 200px;
-  margin: 10px;
-}
+  overflow: hidden;
+  border-radius: 10px;
+} */
 
-.outfitSelCard input {
+/* .outfitSelCard input {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-}
+} */
 
 .outfitSelCard input:checked~.card-content {
-  border-color: green;
+  border: 3px solid green;
 }
 
 .outfitSelCard .card-content {
@@ -205,25 +337,66 @@ body {
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
-  border: 3px solid #ffffff;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+  /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2); */
+}
+
+
+.outfitSelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.outfitSelCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 20%;
+  height: 300px;
+  border: none;
+  margin: 2%;
+}
+
+.outfitSelCard input {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .outfitSelCard img {
+  transition: 0.3s;
+  width: 100%;
+  /* height: 100%; */
   position: relative;
-  height: 100%;
-  width: 300px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  transition: all ease 0.3s;
+  /* height: 100%; */
+  /* width: 300px; */
+  /* left: 50%; */
+  /* transform: translate(-50%, 0); */
+  /* transition: all ease 0.3s; */
 }
 
 .outfitSelCard:hover img {
-  width: 150%;
-  height: 400px;
+  transform: scale(1.05);
+  /* width: 150%; */
+  /* height: 400px; */
 }
 
-.outfitSelCard input:checked~.outfitSelContent img {
+/* .outfitSelCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+} */
+/* 
+.outfitSelCard input:checked~.card-content {
+  border-color: green;
+} */
+
+
+
+/* .outfitSelCard input:checked~.outfitSelContent img {
   filter: greyscale(0.4);
 }
 
@@ -242,9 +415,9 @@ body {
   padding: 12px;
   background-color: #ffffff;
   transition: all ease 0.3s;
-}
+} */
 
-.outfitSelCard:hover .outfitSelContent {
+/* .outfitSelCard:hover .outfitSelContent {
   bottom: 0;
 }
 
@@ -277,4 +450,57 @@ body {
 
 #imagegallery {
   justify-content: center;
+} */
+
+/* Pop Up Styling */
+.popup {
+  /* width: 400px; */
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 1600px);
+  text-align: center;
+  padding: 40px;
+  color: #333;
+  /* visibility: hidden; */
+  display: none;
+  transition: transform 0.4s, top 0.4s;
+  z-index: 1000;
+}
+
+.popup img {
+  width: 100px;
+  /* margin-top: -50px; */
+  /* border-radius: 50%; */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0,2); */
+}
+
+.popup h2 {
+  font-size: 32px;
+  font-weight: 300;
+  margin: 30px 0 30px;
+  color: #482B1B;
+}
+
+#overlay {
+  position: fixed;
+  /* Sit on top of the page content */
+  display: none;
+  /* Hidden by default */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Black background with opacity */
+  z-index: 999;
+  /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  /* Add a pointer on hover */
 }

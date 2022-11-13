@@ -33,6 +33,26 @@
   
     <body style="background-color: #E5D5C6;">
       <!-- ======= Header ======= -->
+      <header id="header" class="header d-flex align-items-center fixed-top position-relative">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+
+          <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+            <h1>ARMOIRE</h1>
+          </a>
+
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="index.html" class="active">Home</a></li>
+              <!-- <li><a href="about.html">About</a></li> -->
+              <li><a href="login.html">Sign In</a></li>
+            </ul>
+          </nav>
+          
+          <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+          <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+      </header>
       
       <div class="container shadow-sm py-5 px-5" id="voteContainer">
         <h1 id="votetitle">Vote Title</h1>
@@ -42,8 +62,10 @@
             <div class="card">
               <h5 class="card-header text-center">Outfit 1</h5>
               <img src="" class="card-img-top" id="outfitimg1">
-              <div class="card-body">
-                <h5 class="card-title" id="input1">Voted by </h5>
+              <div class="card-body row">
+                <h5 class="card-title col-3">Voted by :</h5>
+                <h5 class="card-title col-1" id="input1"></h5>
+                <h5 class="card-title col">others</h5>
               </div>
               <div class="card-footer">
                 <button id="likebtn1" onclick="likeoutfit1()">Vote for Outfit 1</button>
@@ -55,8 +77,10 @@
             <div class="card">
               <h5 class="card-header text-center">Outfit 2</h5>
               <img src="" class="card-img-top" id="outfitimg2">
-              <div class="card-body">
-                <h5 class="card-title" id="input2">Voted by </h5>
+              <div class="card-body row">
+                <h5 class="card-title col-3">Voted by :</h5>
+                <h5 class="card-title col-1" id="input2"></h5>
+                <h5 class="card-title col">others</h5>
               </div>
               <div class="card-footer">
                 <button id="likebtn2" onclick="likeoutfit2()">Vote for Outfit 2</button>
@@ -64,6 +88,13 @@
             </div>
           </div>
         </div>
+        <div id="overlay"></div>
+          <div class="popup" id="popupSuccess">
+              <div id="overlay"></div>
+              <h2>Vote has been placed!</h2>
+              <button class="backtologinbtn mb-2" onclick="startLogin()">Login</button>
+              <button class="cancelbtn" onclick="startBrowsing()">Go to Home Page</button>
+          </div>
       </div>
 
 

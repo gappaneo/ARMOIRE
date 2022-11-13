@@ -29,8 +29,8 @@ var hasVoted = localStorage.getItem(votestr);
 
 // check if the person using the machine has voted before 
 if (hasVoted){
-  LikeBtn1.innerText = "You have already voted";
-  LikeBtn2.innerText = "You have already voted";
+  LikeBtn1.innerText = "Vote has been placed";
+  LikeBtn2.innerText = "Vote has been placed";
   LikeBtn1.setAttribute("disabled", true);
   LikeBtn2.setAttribute("disabled", true);
 }
@@ -60,9 +60,10 @@ LikeBtn1.addEventListener('click', () => {
   // document.getElementById("likebutton2").innerHTML = "Voted 🤝";
   LikeBtn1.innerHTML = "Vote has been placed";
   LikeBtn2.innerHTML = "Vote has been placed";
-  localStorage.setItem(votestr , true);
   LikeBtn1.setAttribute("disabled", true);
   LikeBtn2.setAttribute("disabled", true);
+  localStorage.setItem(votestr , true);
+
 });
 
 LikeBtn2.addEventListener('click', () => {
@@ -72,9 +73,10 @@ LikeBtn2.addEventListener('click', () => {
   // document.getElementById("likebutton2").innerHTML = "Voted 🤝";
   LikeBtn1.innerHTML = "Vote has been placed";
   LikeBtn2.innerHTML = "Vote has been placed";
-  localStorage.setItem(votestr , true);
   LikeBtn1.setAttribute("disabled", true);
   LikeBtn2.setAttribute("disabled", true);
+  localStorage.setItem(votestr , true);
+
 });
 
 
@@ -90,6 +92,7 @@ function likeoutfit1(){
 
       // to check that im entering the correct part of the function
       console.log("vote placed")
+      openPopup("popupSuccess")
       //set path
       var Ref = db.collection('users').doc(useruid).collection('votes').doc(voteurl);
       return Ref.update({
@@ -106,6 +109,7 @@ function likeoutfit2() {
 
       // to check that im entering the correct part of the function
       console.log("vote placed")
+      openPopup("popupSuccess")
       //set path
       var Ref = db.collection('users').doc(useruid).collection('votes').doc(voteurl);
       return Ref.update({
@@ -126,3 +130,16 @@ docRef.get().then((doc) => {
   }
 });
 
+// Pop Up
+function openPopup(type) {
+  document.getElementById(type).style.display = "block";
+  document.getElementById("overlay").style.display = "block";
+}
+
+function startLogin() {
+  window.location.href = "login.html"
+}    
+
+function startBrowsing() {
+  window.location.href = "index.html"
+}    

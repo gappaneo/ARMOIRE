@@ -89,38 +89,42 @@ function updateProfile(){
     //update name and email
     var updateName = document.getElementById("updateName").value
     var email = document.getElementById("updateEmail").value
-    if (updateName == "") {
-      updateName = this.user.displayName
-    } 
-    if (email == "") {
-      email = this.user.email
-    } 
+    if(updateName=="" && email==""){
+        document.getElementById("accError").innerText = "Fields are empty."
+    } else{
+        if (updateName == "") {
+        updateName = this.user.displayName
+        } 
+        if (email == "") {
+        email = this.user.email
+        } 
 
-    user.updateEmail(email)
-    .then(() => {
-        user.updateProfile({displayName: updateName})
-        db.collection("users").doc(user.uid).update({
-        displayName: updateName,
-        email: email
-        })
+        user.updateEmail(email)
         .then(() => {
-            openPopup('successful')
-            document.getElementById("success").innerText = "Successfully updated account details."
-        })        
-    })
-    .catch(err => {
-        openPopup('error');
-        console.log(err)
-        if (err.code == "auth/invalid-email"){  
-            document.getElementById('errorMsg').innerText = "Invalid email entered. Please enter a valid email."
-        } else if (err.code == "auth/email-already-in-use"){
-            document.getElementById("errorMsg").innerText = "Email already has an existing account."
-        } else if (err.code == 'auth/requires-recent-login') {
-            document.getElementById("errorMsg").innerText = "Session time out.\nPlease login again to update account details."
-        } else {
-            document.getElementById("errorMsg").innerText = "Email address update unsuccessful.\nPlease try again."
-        }
-    })    
+            user.updateProfile({displayName: updateName})
+            db.collection("users").doc(user.uid).update({
+            displayName: updateName,
+            email: email
+            })
+            .then(() => {
+                openPopup('successful')
+                document.getElementById("successMsg").innerText = "Successfully updated account details."
+            })       
+        })
+        .catch(err => {
+            openPopup('error');
+            console.log(err)
+            if (err.code == "auth/invalid-email"){  
+                document.getElementById('errorMsg').innerText = "Invalid email entered. Please enter a valid email."
+            } else if (err.code == "auth/email-already-in-use"){
+                document.getElementById("errorMsg").innerText = "Email already has an existing account."
+            } else if (err.code == 'auth/requires-recent-login') {
+                document.getElementById("errorMsg").innerText = "Session time out.\nPlease login again to update account details."
+            } else {
+                document.getElementById("errorMsg").innerText = "Email address update unsuccessful.\nPlease try again."
+            }
+        })    
+    }
 };
 
 function updatePassword(){
@@ -130,26 +134,29 @@ function updatePassword(){
     var updatePassword = document.getElementById("updatePassword").value
     var confirmPassword = document.getElementById("confirmPassword").value
 
-    if (updatePassword == confirmPassword){
-        user.updatePassword(updatePassword)
-        .then(()=>{
-            openPopup("successful")
-            document.getElementById("successMsg").innerText = "Password successfully updated!"
-        })
-        .catch((err) =>{
-            //if require recent login
-            if (err.code == "auth/requires-recent-login"){
-                openPopup('error');
-                document.getElementById("errorMsg").innerText = "Session time out. Please login again to update account password"
-            } else{
-                error = err.message
-                document.getElementById("passwordError").innerText = err.message
-            }
-        })   
+    if(!validatePW(updatePassword)){
+        document.getElementById("passwordError").innerText = "Password has to be minimum 6 characters and contain at least 1 uppercase alphabetical character, 1 lower alphabetical character, 1 numeric number and one special character."
     } else {
-        document.getElementById("passwordError").innerText = "Passwords do not match. Please re-enter password."
+        if (updatePassword == confirmPassword){
+            user.updatePassword(updatePassword)
+            .then(()=>{
+                openPopup("successful")
+                document.getElementById("successMsg").innerText = "Password successfully updated!"
+            })
+            .catch((err) =>{
+                //if require recent login
+                if (err.code == "auth/requires-recent-login"){
+                    openPopup('error');
+                    document.getElementById("errorMsg").innerText = "Session time out. Please login again to update account password"
+                } else{
+                    error = err.message
+                    document.getElementById("passwordError").innerText = err.message
+                }
+            })   
+        } else {
+            document.getElementById("passwordError").innerText = "Passwords do not match. Please re-enter password."
+        }
     }
-
 };
 
 function deleteProfile(){
@@ -170,4 +177,10 @@ function deleteProfile(){
 function openPopup(type) {
     document.getElementById(type+"PopUp").style.display = "block";
     document.getElementById(type+"Overlay").style.display = "block";
+}
+
+//pw validation
+function validatePW(password){
+    var regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+    return(regex.test(password))
 }

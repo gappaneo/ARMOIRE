@@ -28,39 +28,35 @@
   <link href="css/updateProfile.css" rel="stylesheet">
   
 </head>
-<header id="header" class="header d-flex align-items-center">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top position-relative">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-  
-      <a href="dashboard.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+
+      <a href="dashboard.html" class="logo d-flex align-items-start me-auto me-lg-0">
         <h1>ARMOIRE</h1>
       </a>
       
       <nav id="navbar" class="navbar">
         <ul>
-          <li style="text-align: center;"><a href="dashboard.html" class="active">Closet</a></li>
+          <li><a href="dashboard.html">Closet</a></li>
           <li><a href="createvote.html">Create Poll</a></li>
           <li><a href="existingvotes.html">Existing Polls</a></li>
           <li><a href="profile.html">Profile</a></li>
           <li><a href="addOutfit.html">Create Outfit</a></li>
+          <li></li>
         </ul>
       </nav>
       
       <!-- .navbar -->
-  
-      <div class="header-social-links">
-        <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
-        <a href="#" class="facebook"><i class="bi bi-github"></i></a>
-        <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
-      </div>
+      <button onclick="cfmLogoutPopup()" class="btn align-self-end"><i class="bi bi-box-arrow-right mx-2"></i>Log Out</button>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-  
+
     </div>
-</header>
+  </header>
 <body>
     <div class="container shadow-sm my-5 py-5 px-5">
-        <a href="./profile.html"><i class='bi bi-arrow-left' style="font-size:32px;"></i></a>
+        <a href="./profile.html"><i class='bi bi-arrow-left backArrow' style="font-size:32px;"></i></a>
         <h1 style="text-align: center">Edit Profile</h1>
        
 
@@ -76,22 +72,23 @@
             </div>
 
             <!-- Uploaded image area-->
-            <div class="image-area mt-4"><img id="profilePreview" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 50vh"></div>
+            <div class="image-area my-3"><img id="profilePreview" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 50vh"></div>
                 
-            <button class="btn tablink" onclick="updatePicture()">Upload New Profile Picture</button>
+            <button class="btn-standard" onclick="updatePicture()">Upload New Profile Picture</button>
         </div>   
             
         <!-- acc details -->  
         <br><br>
         <div class="col-8 mx-auto px-4">
             <h2 class="subheading">Account Details</h2>
+            <p id="accError" style="font-style: italic; color: red"></p>
             <p>Name:</p> 
             <input type="text" placeholder="Enter New Name" class="form-control my-3 p-3" name="updateName" id="updateName"/>  
             <p style="font-style:italic">OR</p>
             <p>Email Address:</p>                
             <input type="email" placeholder="Enter New Email Address" class="form-control my-3 p-3" name="updateEmail" id="updateEmail"/>
             
-            <button class="btn tablink" onclick="updateProfile()">Update Account Details</button>     
+            <button class="btn-standard" onclick="updateProfile()">Update Account Details</button>     
         </div>
 
         <!-- Password -->
@@ -101,13 +98,13 @@
             <p id="passwordError" class="errorMessage" style="font-style: italic; color: red"></p>
             <input type="password" placeholder="Enter Password" class="form-control my-3 p-3" name="updatePassword" id="updatePassword"/>
             <input type="password" placeholder="Confirm Password" class="form-control my-3 p-3" name="confirmPassword" id="confirmPassword"/>
-            <button class="btn tablink" onclick="updatePassword()">Update Password</button>
+            <button class="btn-standard" onclick="updatePassword()">Update Password</button>
         </div>
 
         <br><br>
         <div class="col-8 mx-auto px-4">
         <!-- delete profile -->
-            <button class="btn tablink w-100" onclick="openPopup('delete')">delete profile</button>
+            <button class="btn-standard w-100" onclick="openPopup('delete')">delete profile</button>
         </div>
         
         <!-- CFM DELETE POPUP -->
@@ -115,10 +112,9 @@
             <div class="popup" id="deletePopUp">
                 <h2>Confirm delete account?</h2>
                 <div class="row">
-                    <button class="btn tablink" onclick="deleteProfile()">Yes, delete my account.</button>
-                    <button class="tablink" onclick="location.href='updateProfile.html'"">Cancel.</button>                     
+                    <button class="btn-standard mb-3" onclick="deleteProfile()">Yes, delete my account.</button>
+                    <button class="cancelbtn" onclick="location.href='updateProfile.html'">Cancel.</button>                     
                 </div>
-    
             </div>
         </div> 
 
@@ -127,9 +123,9 @@
             <div class="popup" id="errorPopUp">
                 <h2 id="errorMsg"></h2>
                 <div class="row">
-                    <button class="btn tablink" onclick="location.href='login.html'">Go to Login</button>
-                    <button class="btn tablink" onclick="location.href='dashboard.html'">My Closet</button>
-                    <button class="btn tablink" onclick="location.href='updateProfile.html'">Back</button>                     
+                    <button class="btn-standard mb-3" onclick="location.href='login.html'">Go to Login</button>
+                    <button class="btn-standard mb-3" onclick="location.href='dashboard.html'">My Closet</button>
+                    <button class="cancelbtn" onclick="location.href='updateProfile.html'">Back</button>                     
                 </div>
             </div>
         </div>  
@@ -138,9 +134,22 @@
         <div class="overlay" id="successfulOverlay">
             <div class="popup" id="successfulPopUp">
                 <h2 id="successMsg"></h2>
-                <button class="btn tablink" onclick="location.href='login.html'">Go to Login</button>
-                <button class="btn tablink" onclick="location.href='dashboard.html'">My Closet</button>
-                <button class="btn tablink" onclick="location.href='updateProfile.html'">Back</button>        
+                <div class="row">
+                    <button class="btn-standard mb-3" onclick="location.href='login.html'">Go to Login</button>
+                    <button class="btn-standard mb-3" onclick="location.href='dashboard.html'">My Closet</button>
+                    <button class="cancelbtn" onclick="location.href='updateProfile.html'">Back</button>                            
+                </div>
+            </div>
+        </div>  
+        
+        <!-- LOGOUT POPUP -->
+        <div class="overlay" id="logoutOverlay">
+            <div class="popup" id="logoutPopup">
+                <h2>Confirm Log Out?</h2>
+                <div class="row">
+                    <button class="btn-standard mb-3" onclick="logout()">Yes</button>
+                    <button class="cancelbtn" onclick="closeLogoutPopup()">Back</button>                            
+                </div>
             </div>
         </div>  
 
@@ -154,4 +163,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 <!-- html js --->
 <script src="js/updateProfile.js"></script>
+<!-- MAIN JS -->
+<script src="assets/js/main.js"></script>
 </html>

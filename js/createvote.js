@@ -50,7 +50,6 @@ auth.onAuthStateChanged(user => {
 			<div class="card-content">
 			  <img src="${doc.data().outfitData.url}"/>
 			  <div class="content outfitSelContent">
-				<h4>${doc.data().outfitData.name}</h4>
 			  </div>
 			</div>
 		  </label>`
@@ -111,8 +110,8 @@ function createnewvote() {
 				datecreated : new Date().toLocaleString(),
 			})
 			.then(()=> {
-				console.log("Vote has been created!")
-				window.location.replace("dashboard.html");
+				document.getElementById("popup").style.display = "block";
+				document.getElementById("overlay").style.display = "block";
 			})
 			.catch((error) => {
 				console.error("Error creating vote", error);

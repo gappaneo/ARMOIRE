@@ -93,6 +93,7 @@ function loadImages(query){
               //create outer div box tag
               var oDiv = document.createElement('div')
               oDiv.setAttribute("class", 'container-fluid dashboard-item mb-4')
+              oDiv.setAttribute("style", "padding-right: 0px;padding-left: 0px")
               //insert img and inner div box
               oDiv.appendChild(img)
               oDiv.appendChild(iDiv)

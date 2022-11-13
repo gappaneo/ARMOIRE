@@ -395,10 +395,6 @@ from update outfit CSS
   border: 0px;
 }
 
-.btn:hover {
-    background: #D0A68E;
-} 
-
 p {
 color: var(--color-primary);
   font-family: var(--font-secondary);

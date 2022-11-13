@@ -17,6 +17,12 @@ let auth = app.auth()
 //user database
 let userDatabase = db.collection('users')
 
+// field validation
+var emailV = false;
+var nameV = false;
+var passwordV = false;
+
+
 //user registration
 const register = () => {
     const email = document.getElementById("regEmail").value
@@ -24,6 +30,7 @@ const register = () => {
         document.getElementById("emailError").innerText = "Please enter a valid email address."
     } else {
         document.getElementById("emailError").innerText = ""
+        emailV = true
     }
 
     const name = document.getElementById("regName").value
@@ -31,20 +38,24 @@ const register = () => {
         document.getElementById("nameError").innerText = "Please enter a valid name."
     } else {
         document.getElementById("nameError").innerText = ""
+        nameV = true
     }
 
     const password = document.getElementById("regPassword").value
     const confirmPassword = document.getElementById("confirmPassword").value
     if (password == ""){
         document.getElementById("passwordError").innerText = "Please enter a valid password with minimum 6 characters."
+    } else if (!validatePW(password)){
+        document.getElementById("passwordError").innerText = "Password has to be minimum 6 characters and contain at least 1 uppercase alphabetical character, 1 lower alphabetical character, 1 numeric number and one special character."
     } else if (password != confirmPassword){
         document.getElementById("passwordError").innerText = ""
         document.getElementById("confirmError").innerText = "Passwords do not match."
     } else {
         document.getElementById("confirmError").innerText = ""
+        passwordV = true
     }
 
-    if (name && email && password == confirmPassword) {
+    if (nameV && emailV && passwordV) {
         auth.createUserWithEmailAndPassword(email, password)
         .then((res) => {
             var userId = res.user.uid
@@ -105,3 +116,9 @@ const login = () => {
     })
 }
 
+//pw validation
+function validatePW(password){
+    var regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
+    console.log(regex.test(password))
+    return(regex.test(password))
+}

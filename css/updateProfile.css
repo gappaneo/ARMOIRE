@@ -438,7 +438,7 @@ color: var(--color-primary);
     cursor: pointer; /* Add a pointer on hover */
     }
 
-    #updatePhoto {
+  #updatePhoto {
       opacity: 0;
       overflow: hidden;
     }

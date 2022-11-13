@@ -50,18 +50,3 @@ auth.onAuthStateChanged((user) => {
 	}
 	console.log("user: ", user)
 })
-
-
-//user logout
-var logout = () => {
-  auth
-    .signOut()
-    .then(() => {
-      window.location.href = "index.html";
-      console.log("Sign-out successful");
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error.message);
-    });
-};

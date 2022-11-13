@@ -66,17 +66,19 @@ auth.onAuthStateChanged(user => {
 //link copying functionz 
 const copyButton = document.getElementById("copybutton");
 copyButton.addEventListener("click", () => {
-  alert("Link copied")
   navigator.clipboard.writeText(sharelinkurl);
+  console.log(sharelinkurl)
 });
 
 
 function closeVote() {
   auth.onAuthStateChanged(user => {
     // to check that im entering the correct part of the function
-    alert("Vote closed!")
+    
     //set path
     var Ref = db.collection('users').doc(user.uid).collection('votes').doc(voteurl);
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
     return Ref.update({
       VoteStatus: "Closed"
   })

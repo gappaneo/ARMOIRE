@@ -56,25 +56,6 @@
   box-shadow: none;
 }
 
-.updateOutfit{
-font-family: var(--font-secondary);
-width: 100%;
-font-weight: 600;
-font-size: 14px;
-display: inline-block;
-padding: 12px 36px;
-border-radius: 100px;
-letter-spacing: 1px;
-text-transform: uppercase;
-transition: 0.3s;
-color: #fff;
-background: var(--color-primary);
-border: 0px;
-}
-
-.updateOutfit:hover {
-  background: #D0A68E;
-} 
 
 /*
 *
@@ -190,46 +171,3 @@ body {
     z-index: 999; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
     }
-
-/* tablink */
-
-
-.tablink ul {
-margin: 0px 0px 0px 0px;
-padding: 0;
-display: flex;
-list-style: none;
-align-items: center;
-
-}
-
-.tablink li {
-position: relative;
-/* border-bottom: 4px solid #E5D5C6; */
-}
-.tablink {
-border: 0px;
-display: flex;
-align-items: center;
-/* justify-content: space-between; */
-padding: 8px 20px 8px 20px;
-font-family: var(--font-secondary);
-text-transform: uppercase;
-letter-spacing: 1px;
-font-size: 14px;
-font-weight: 600;
-color: #E5D5C6;
-background-color: #482B1B ;
-white-space: nowrap;
-transition: 0.3s;
-justify-content: center;
-}
-
-.tablink:hover,
-.tablink li:hover{
-  /* color: #fff;
-  border-color:#fff; */
-  background: #F9F6F2;
-  color:#482B1B;
-  border: 2px solid #482B1B; 
-}
