@@ -110,8 +110,8 @@ function createnewvote() {
 				datecreated : new Date().toLocaleString(),
 			})
 			.then(()=> {
-				document.getElementById("popup").style.display = "block";
-				document.getElementById("overlay").style.display = "block";
+				document.getElementById("PopUp").style.display = "block";
+				document.getElementById("Overlay").style.display = "block";
 			})
 			.catch((error) => {
 				console.error("Error creating vote", error);

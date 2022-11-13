@@ -452,17 +452,15 @@ body {
   justify-content: center;
 } */
 
-/* Pop Up Styling */
 .popup {
-  /* width: 400px; */
   background: #fff;
   border-radius: 6px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 1600px);
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 40px;
+  padding: 30px 40px;
   color: #333;
   /* visibility: hidden; */
   display: none;
@@ -470,21 +468,7 @@ body {
   z-index: 1000;
 }
 
-.popup img {
-  width: 100px;
-  /* margin-top: -50px; */
-  /* border-radius: 50%; */
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0,2); */
-}
-
-.popup h2 {
-  font-size: 32px;
-  font-weight: 300;
-  margin: 30px 0 30px;
-  color: #482B1B;
-}
-
-#overlay {
+.overlay {
   position: fixed;
   /* Sit on top of the page content */
   display: none;
